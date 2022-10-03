@@ -1,8 +1,21 @@
 html{
     background-color: floralwhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#title1{
+.text{
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.surname{
+    display: flex;
+    margin: 0 auto;
+}
+.empty{
+    height: 120px;
+}
+.bold{
+    font-weight: bold;
 }
