@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/mgcsuwmt/public_html/
-    - /bin/cp public/ $DEPLOYPATH
+    - /bin/rsync -av public/ $DEPLOYPATH
