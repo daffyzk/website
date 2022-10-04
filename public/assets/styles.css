@@ -9,12 +9,26 @@ html{
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.right{
+    text-align: right;
+}
+.name{
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+    font-weight: bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .surname{
     display: flex;
-    margin: 0 auto;
+    margin: 0%;
+    padding-top: 0%;
+    font-weight: bold;
+    font-style: italic;
+    font-family: monospace;
 }
 .empty{
     height: 120px;
+    padding: 50px;
 }
 .bold{
     font-weight: bold;
