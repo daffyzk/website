@@ -33,3 +33,9 @@ html{
 .bold{
     font-weight: bold;
 }
+.small{
+    font-size: smaller;
+}
+.italic{
+    font-style: italic;
+}
