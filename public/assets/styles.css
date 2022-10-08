@@ -3,11 +3,9 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.text{
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 .right{
     text-align: right;
