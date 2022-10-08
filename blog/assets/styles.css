@@ -3,12 +3,12 @@ html{
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.topDiv{
+.header{
     top: 50px;
     float: left;
 }
 .mainContent{
-    padding: 120px 0 50 0;
+    margin-left: 5px;
     display: flex;
     position: absolute;
     top: 110px;
@@ -17,16 +17,21 @@ html{
     bottom: 50px;
     float: left;
 }
-#footer{
-    position: absolute;
+.blogPost{
+    margin: 5px;
+    border: 4px;
+    border-style: solid;
+    border-color: beige;
+    height: 150px;
+    width: 150px;
+    padding: 8px;
+    background-color: cornsilk;
+    text-align: left;
     bottom: 0;
 }
-.bold{
-    font-weight: bold;
-}
-.small{
-    font-size: smaller;
-}
-.italic{
-    font-style: italic;
+.blogPostTitle{
+    font-size: small;
+    position: relative;
+    bottom: 0;
+    left: 0;
 }

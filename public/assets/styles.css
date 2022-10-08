@@ -1,11 +1,19 @@
 html{
     background-color: floralwhite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
+}
+.fullname{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40em 0 40em;
 }
 .right{
     text-align: right;
@@ -23,17 +31,4 @@ html{
     font-weight: bold;
     font-style: italic;
     font-family: monospace;
-}
-.empty{
-    height: 120px;
-    padding: 50px;
-}
-.bold{
-    font-weight: bold;
-}
-.small{
-    font-size: smaller;
-}
-.italic{
-    font-style: italic;
 }
