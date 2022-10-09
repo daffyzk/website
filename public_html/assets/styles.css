@@ -40,7 +40,7 @@ html{
     justify-content: center;
     align-items: center;
 }
-.mainContent ul{
+.mainContent-ul{
     list-style: none;
     padding-left: 40%;
     padding-right: 40%;
