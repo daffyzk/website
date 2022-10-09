@@ -5,5 +5,3 @@ deployment:
     - /bin/cp -r public_html/. $DEPLOYPATH
     - export DEPLOYPATH=/home/mgcsuwmt/blog/
     - /bin/cp -r blog/. $DEPLOYPATH
-    - export DEPLOYPATH=/home/mgcsuwmt/general_stuff/
-    - /bin/cp -r general_stuff/. $DEPLOYPATH
