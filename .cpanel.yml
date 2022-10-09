@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/mgcsuwmt/public_html/
-    - /bin/cp -r public/. $DEPLOYPATH
+    - /bin/cp -r public_html/. $DEPLOYPATH
     - export DEPLOYPATH=/home/mgcsuwmt/blog/
     - /bin/cp -r blog/. $DEPLOYPATH
     - export DEPLOYPATH=/home/mgcsuwmt/general_stuff/

@@ -13,7 +13,11 @@ html{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 40em 0 40em;
+}
+.mainContent ul{
+    list-style: none;
+    padding-left: 40%;
+    padding-right: 40%;
 }
 .right{
     text-align: right;
@@ -22,7 +26,6 @@ html{
     margin-bottom: 0%;
     padding-bottom: 0%;
     font-weight: bolder;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .surname{
     display: flex;
