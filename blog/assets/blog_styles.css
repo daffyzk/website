@@ -43,6 +43,10 @@ html{
     bottom: 50px;
     float: left;
 }
+.mainContent ul{
+    list-style: none;
+
+}
 .blogPost{
     margin: 5px;
     border: 4px;
@@ -54,8 +58,9 @@ html{
     background-color: cornsilk;
     text-align: left;
     bottom: 0;
+    float: left;
 }
-.blogPostTitle{
+.blogPost p{
     font-size: small;
     position: relative;
     bottom: 0;
