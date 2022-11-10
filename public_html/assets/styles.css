@@ -28,7 +28,6 @@ html{
     background-color: floralwhite;
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }
 .fullname{
     display: flex;
@@ -45,12 +44,6 @@ html{
     padding-left: 40%;
     padding-right: 40%;
 }
-.center{
-    text-align: center;
-}
-.right{
-    text-align: right;
-}
 .name{
     margin-bottom: 0%;
     padding-bottom: 0%;
@@ -63,4 +56,12 @@ html{
     font-weight: bold;
     font-style: italic;
     font-family: monospace;
+}
+li p{
+    text-align: center;
+    border-width: 0.1em;
+}
+li a{
+    text-align: center;
+    font-weight: bold;
 }
