@@ -56,13 +56,17 @@ html{
     font-style: italic;
     font-family: monospace;
 }
-li p{
+li form{
     text-align: center;
     border-width: 0.1em;
 }
-li a{
-    text-align: center;
-    font-weight: bold;
+button{
+    margin-top: 4px;
+    padding: 4px;
+    font-size: 20px;
+    width: 150px;
+    border-color: azure;
+    border-style: none;
 }
 
 @media only screen and (max-width:950px) {
