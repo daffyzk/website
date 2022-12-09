@@ -54,12 +54,7 @@ button:hover{
 .name hr{
     width: 8%;
 }
-.name h1{
-    display: inline-block;
-    vertical-align: top;
-}
 .name h3{
-    display: inline-block;
     font-size: 18px;
 }
 
