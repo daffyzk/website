@@ -1,5 +1,5 @@
 #footer{
-    position: absolute;
+    position: sticky;
     bottom: 0;
     padding-left: 0;
 }
@@ -19,49 +19,19 @@ html{
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.fullname{
+.buttons{
+    position: sticky;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 10px;
-}
-.mainContent{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(255, 254, 250);
-    padding-bottom: 50px;
-    margin: 0 700px 0 700px;
-}
-.mainContent ul{
-    padding-top: 0;
-    list-style: none;
-    padding-left: 20%;
-    padding-right: 20%;
-}
-.name{
-    margin-bottom: 0%;
-    padding-bottom: 0%;
-    font-weight: bolder;
-}
-.surname{
-    display: flex;
-    margin: 0%;
-    padding-top: 0%;
-    font-weight: bold;
-    font-style: italic;
-    font-family: monospace;
-}
-li form{
-    text-align: center;
-    border-width: 0.1em;
 }
 button{
+    display: inline-block;
     margin-top: 8px;
     padding: 6px;
-    font-size: 20px;
+    font-size: 16px;
     width: 150px;
-    background-color: rgb(254, 255, 248);
+    background-color: floralwhite;
     border-color: azure;
     border-style: none;
     color: darkslategray;
@@ -69,6 +39,52 @@ button{
 button:hover{
     background-color: aquamarine;
     color: cornflowerblue;
+}
+.name{
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.name li{
+    padding: 0;
+    border-width: 0;
+    margin: 0;
+}
+.name hr{
+    width: 8%;
+}
+.name h1{
+    display: inline-block;
+    vertical-align: top;
+}
+.name h3{
+    display: inline-block;
+    font-size: 18px;
+}
+
+
+/*---experience---*/
+.experience{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 254, 250);
+    padding-bottom: 50px;
+    margin: 0 700px 0 700px;
+}
+.experience ul{
+    padding-top: 0;
+    list-style: none;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.experience h1{
+    font-size: 22px;
+}
+.experience form{
+    display: flex;
+    justify-content: center;
 }
 
 @media only screen and (max-width:950px) {
@@ -81,12 +97,12 @@ button:hover{
         padding: 0;
         margin: 0;
     }
-    .mainContent{
+    .experience{
         display: flex;
         align-items: center;
         margin: 0 30px 0 30px;
     }
-    .mainContent ul{
+    .experience ul{
         list-style: none;
         padding: 0;
     }
