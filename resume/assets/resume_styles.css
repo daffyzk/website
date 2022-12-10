@@ -77,6 +77,10 @@ button:hover{
 .experience h1{
     font-size: 22px;
 }
+.experience h4{
+    padding: 0;
+    margin: 0 0 0 10px;
+}
 .experience form{
     display: flex;
     justify-content: center;
@@ -86,16 +90,26 @@ button:hover{
 
     #footer{
         position: bottom;
-        padding-left: 0;
     }
     .footerText{
         padding: 0;
         margin: 0;
     }
+    .buttons form{
+        border-color: cadetblue;
+        border-style: dashed;
+        margin: 2px;
+        width: 25%;
+        padding-bottom: 5px;
+    }
+    button{
+        width: 100px;
+        align-items: center;
+    }
     .experience{
         display: flex;
         align-items: center;
-        margin: 0 30px 0 30px;
+        margin: 0 30px 30px 30px;
     }
     .experience ul{
         list-style: none;

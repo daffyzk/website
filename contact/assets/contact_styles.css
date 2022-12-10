@@ -1,0 +1,118 @@
+#footer{
+    position: absolute;
+    bottom: 0;
+    padding-left: 0;
+}
+.footerText{
+    padding: 0;
+    margin: 0;
+}
+.funnyBottomText{
+    margin: 0;
+    padding-top: 6px;
+    font-size: smaller;
+    font-style: italic;
+}
+/*---main---*/
+html{
+    background-color: floralwhite;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.buttons{
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 16px;
+    width: 150px;
+    background-color: floralwhite;
+    border-color: azure;
+    border-style: none;
+    color: darkslategray;
+}
+button:hover{
+    background-color: aquamarine;
+    color: cornflowerblue;
+}
+.name{
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.name li{
+    padding: 0;
+    border-width: 0;
+    margin: 0;
+}
+.name hr{
+    width: 8%;
+}
+.name h3{
+    font-size: 18px;
+}
+
+
+/*---contact info---*/
+.contactme{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 254, 250);
+    padding-bottom: 50px;
+    margin: 0 700px 0 700px;
+}
+.contactme ul{
+    padding-top: 0;
+    list-style: none;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.contactme h1{
+    font-size: 22px;
+}
+.contactme form{
+    display: flex;
+    justify-content: center;
+}
+h2 p {
+    font-size: medium;
+    padding: 0;
+    margin: 0;
+}
+
+@media only screen and (max-width:950px) {
+
+    #footer{
+        position: bottom;
+        padding-left: 0;
+    }
+    .footerText{
+        padding: 0;
+        margin: 0;
+    }
+    .contactme{
+        padding-bottom: 10px;
+        margin: 0 10px 0 10px;
+        
+
+    }
+    .contactme ul{
+        list-style: none;
+        padding: 0 5px 0 5px;
+        display: inline-table; 
+        align-items: center;
+        justify-content: center;
+    }
+    h2 {
+        font-size: medium;
+        padding: 10px;
+        margin: 0;
+    }
+}
