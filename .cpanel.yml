@@ -7,3 +7,5 @@ deployment:
     - /bin/cp -r blog/. $DEPLOYPATH
     - export DEPLOYPATH=/home/mgcsuwmt/resume/
     - /bin/cp -r resume/. $DEPLOYPATH
+    - export DEPLOYPATH=/home/mgcsuwmt/contact/
+    - /bin/cp -r contact/. $DEPLOYPATH
