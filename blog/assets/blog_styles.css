@@ -56,12 +56,20 @@ html{
     padding: 8px;
     background-color: cornsilk;
     text-align: left;
-    bottom: 0;
+    top: 0;
     float: left;
 }
 .blogPost p{
+    text-align: right;
     font-size: small;
     position: relative;
     bottom: 0;
     left: 0;
+}
+.blogPost h3{
+    margin: 10px 0 50px 0;
+}
+.date{
+    font-size: 12px;
+    font-weight: bold;
 }
