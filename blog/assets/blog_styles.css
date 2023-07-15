@@ -73,3 +73,17 @@ html{
     font-size: 12px;
     font-weight: bold;
 }
+button{
+    width: 100%;
+    height: 100%;
+    border-color: transparent;
+    border-style: hidden;
+    cursor:pointer;
+    border: none;
+}
+button h2{
+    text-align: left;
+}
+#hw-corne{
+    background-image: url('hw-corne1.png') no-repeat;
+}

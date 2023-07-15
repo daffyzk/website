@@ -60,10 +60,10 @@ li form{
     border-width: 0.1em;
 }
 button{
+    width: 150px;
     margin-top: 8px;
     padding: 6px;
     font-size: 20px;
-    width: 150px;
     background-color: rgb(254, 255, 248);
     border-color: azure;
     border-style: none;
