@@ -1,0 +1,125 @@
+:root {
+    --main-bg-color: brown;
+}
+.italic{
+    font-style: italic;
+}
+.funnyBottomText{
+    margin: 0;
+    padding-top: 6px;
+    font-size: smaller;
+    font-style: italic;
+}
+/*---main---*/
+html{
+    background-color: floralwhite;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+header{
+    margin-left: 10%;
+}
+.fulltitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.title{
+    margin-bottom: 0%;
+    padding-bottom: 0%;
+    font-weight: bolder;
+}
+.stitle{
+    display: flex;
+    margin: 0%;
+    padding-top: 0%;
+    font-weight: bold;
+    font-style: italic;
+    font-family: monospace;
+}
+.date{
+    font-size: 1.5em;
+    padding-top: 3%;
+    font-family: monospace;
+    font-style: italic;
+    font-weight: 700;
+}
+li form{
+    text-align: center;
+    border-width: 0.1em;
+}
+button{
+    width: 150px;
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 20px;
+    background-color: rgb(254, 255, 248);
+    border-color: azure;
+    border-style: none;
+    color: darkslategray;
+}
+button:hover{
+    background-color: aquamarine;
+    color: cornflowerblue;
+}
+.the-end{
+    font-style: oblique;
+    font-family: cursive;
+    font-size: 1.8em;
+    padding-bottom: 80px;
+}
+
+#footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 33%;
+    background-color:rgba(255, 245, 210, 0.61);
+    padding-left: 10px;
+}
+.footerText{
+    padding: 0;
+    margin: 0;
+}
+.mainContent{
+    font-size: 130%;
+    display: grid;
+    background-color: rgb(255, 254, 250);
+    margin: 0 10% 50px 10%;
+    overflow-y: scroll;
+}
+.mainContent ul{
+    padding-top: 0;
+    list-style: none;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+@media only screen and (max-width:1250px) {
+
+    #footer{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 80%;
+        background-color:rgba(255, 245, 210, 0.61);
+        padding-left: 10px;
+    }
+    .footerText{
+        padding: 0;
+        margin: 0;
+    }
+    .mainContent{
+        background-color: rgb(255, 254, 250);
+        overflow-y: scroll;
+        font-size: 160%;
+        margin: 0 30px 0 30px;
+    }
+    .mainContent ul{
+        list-style: none;
+        padding: 0;
+    }
+}
