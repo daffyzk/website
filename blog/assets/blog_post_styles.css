@@ -7,7 +7,6 @@
     font-size: smaller;
     font-style: italic;
 }
-/*---main---*/
 html{
     background-color: floralwhite;
     color: black;
@@ -35,13 +34,6 @@ html{
     font-weight: bold;
     font-style: italic;
     font-family: monospace;
-}
-.date{
-    font-size: 1.5em;
-    padding-top: 3%;
-    font-family: monospace;
-    font-style: italic;
-    font-weight: 700;
 }
 li form{
     text-align: center;
@@ -111,15 +103,16 @@ a:hover#comments {
     color: cornflowerblue;
 }
 
+/*---content that changes for mobile---*/
 .mainContent{
-    font-size: 130%;
     display: grid;
     background-color: rgb(255, 254, 250);
-    margin: 0 10% 50px 10%;
+    margin: 0 25% 50px 25%;
     overflow-y: scroll;
+    padding: 2%;
 }
 .mainContent p{
-    font-size: 130%;
+    font-size: 110%;
 }
 .mainContent ul{
     padding-top: 0;
@@ -127,11 +120,11 @@ a:hover#comments {
     padding-left: 20%;
     padding-right: 20%;
 }
-.img_subtitle{
+p.img_subtitle{
     font-style: oblique;
     padding: 0;
     margin: 0;
-    font-size: 110%;
+    font-size: 90%;
 }
 img{
     width:80%;
@@ -157,35 +150,43 @@ hr:after {
     padding: 0 4px;
     position: relative;
 }
-
+.date{
+    font-size: 1.5em;
+    padding-left: 32%;
+    font-family: monospace;
+    font-style: oblique;
+    font-variant: small-caps;
+    font-weight: 700;
+}
 
 
 @media only screen and (max-width:1250px) {
 
     .mainContent{
-        margin: 0 5% 0 5%;
+        margin: 0 5% 50px 5%;
+        padding: 1%;
     }
     .mainContent p{
-        font-size: 120%;
+        font-size: 140%;
     }
     .mainContent li{
-        font-size: 115%;
+        font-size: 120%;
     }
     .mainContent ul{
         list-style: none;
         padding: 0;
     }
     .mainContent h2{
-        font-size: 160%;
+        font-size: 180%;
     }
     .mainContent h3{
-        font-size: 140%;
+        font-size: 155%;
     }
     .mainContent h4{
-        font-size: 130%;
+        font-size: 145%;
     }
     .img_subtitle{
-        font-size: 110%;
+        font-size: 85%;
     }
     img{
         width:100%;
@@ -199,7 +200,8 @@ hr:after {
         max-width: 50%;
     }
     .date{
-        padding-top: 2px;
+        font-size: 2em;
+        padding-top: 0.5%;
         padding-left: 8%;
         font-family: monospace;
         font-style: italic;
