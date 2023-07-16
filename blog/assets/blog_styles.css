@@ -36,20 +36,6 @@ html{
     top: 50px;
     float: left;
 }
-.mainContent{
-    margin-left: 5px;
-    display: flex;
-    position: absolute;
-    top: 110px;
-    left: 0px;
-    right: 0px;
-    bottom: 50px;
-    float: left;
-}
-.mainContent ul{
-    list-style: none;
-
-}
 .blogPost{
     margin: 5px;
     border: 4px;
@@ -105,7 +91,22 @@ button h2{
 #hw-corne{
     background-image: url(corne-story/hw-corne1.png);
 }
-@media only screen and (max-width:950px) {
+
+.mainContent{
+    margin-left: 5px;
+    display: flex;
+    position: absolute;
+    top: 110px;
+    left: 0px;
+    right: 0px;
+    bottom: 50px;
+    float: left;
+}
+.mainContent ul{
+    list-style: none;
+
+}
+@media only screen and (max-width:1250px) {
 
     #footer{
         position: fixed;
