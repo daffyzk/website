@@ -8,10 +8,6 @@
     padding-left: 10px;
 }
 .footerText{
-    padding: 0;
-    margin: 0;
-}
-.footerText{
     margin: 0;
     padding-top: 6px;
     font-size: smaller;
@@ -27,7 +23,7 @@ html{
     top: 50px;
     float: left;
 }
-.blogPost{
+div.blogPost{
     margin: 5px;
     border: 4px;
     border-style: solid;
@@ -50,6 +46,24 @@ html{
 .blogPost h3{
     margin: 10px 0 50px 0;
 }
+.blogPost form{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.blogPost button{
+    width: 100%;
+    height: 100%;
+    border-color: transparent;
+    border-style: hidden;
+    cursor:pointer;
+    border: none;
+}
+.blogPost button h2{
+    text-align: left;
+}
+
 .date{
     font-size: 12px;
     font-weight: bold;
@@ -70,7 +84,7 @@ button:hover.button{
 }
 #suggestions{
     margin-left: 5px;
-    width: 180px;
+    width: 190px;
     margin-top: 8px;
     padding: 6px;
     font-size: 20px;
@@ -79,21 +93,12 @@ button:hover.button{
     border-style: none;
     color: darkslategray;
 }
+a:link#suggestions{
+    text-decoration: none;
+}
 a:hover#suggestions {
     background-color: aquamarine;
     color: cornflowerblue;
-}
-
-button{
-    width: 100%;
-    height: 100%;
-    border-color: transparent;
-    border-style: hidden;
-    cursor:pointer;
-    border: none;
-}
-button h2{
-    text-align: left;
 }
 #hw-corne{
     background-image: url(corne-story/hw-corne1.png);

@@ -1,13 +1,13 @@
 #footer{
-    position: absolute;
+    position: fixed;
+    padding-left: 10px;
+    left: 5px;
     bottom: 0;
-    padding-left: 0;
+    width: auto;
+    background-color:rgba(255, 245, 210, 0.61);
+    padding-left: 10px;
 }
 .footerText{
-    padding: 0;
-    margin: 0;
-}
-.funnyBottomText{
     margin: 0;
     padding-top: 6px;
     font-size: smaller;
@@ -65,8 +65,8 @@ button:hover{
     justify-content: center;
     align-items: center;
     background-color: rgb(255, 254, 250);
-    padding-bottom: 50px;
-    margin: 0 700px 0 700px;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 .contactme ul{
     padding-top: 0;
@@ -89,14 +89,6 @@ h2 p {
 
 @media only screen and (max-width:950px) {
 
-    #footer{
-        position: bottom;
-        padding-left: 0;
-    }
-    .footerText{
-        padding: 0;
-        margin: 0;
-    }
     .contactme{
         padding-bottom: 10px;
         margin: 0 10px 0 10px;
