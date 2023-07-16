@@ -1,26 +1,17 @@
 #footer{
-    background-color: aliceblue;
     position: fixed;
-    left: 0;
+    padding-left: 10px;
+    left: 5px;
     bottom: 0;
-    width: 33%;
-    padding-left: 50px;
-    margin: 50% 0 0 0;
+    width: auto;
+    background-color:rgba(255, 245, 210, 0.61);
+    padding-left: 10px;
 }
 .footerText{
     padding: 0;
     margin: 0;
 }
-.bold{
-    font-weight: bold;
-}
-.small{
-    font-size: smaller;
-}
-.italic{
-    font-style: italic;
-}
-.funnyBottomText{
+.footerText{
     margin: 0;
     padding-top: 6px;
     font-size: smaller;
@@ -73,10 +64,26 @@ html{
     border-style: none;
     color: darkslategray;
 }
-.button button:hover{
+button:hover.button{
     background-color: aquamarine;
     color: cornflowerblue;
 }
+#suggestions{
+    margin-left: 5px;
+    width: 180px;
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 20px;
+    background-color: rgb(254, 255, 248);
+    border-color: azure;
+    border-style: none;
+    color: darkslategray;
+}
+a:hover#suggestions {
+    background-color: aquamarine;
+    color: cornflowerblue;
+}
+
 button{
     width: 100%;
     height: 100%;
@@ -108,17 +115,6 @@ button h2{
 }
 @media only screen and (max-width:1250px) {
 
-    #footer{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: min-content;
-        padding-left: 0;
-    }
-    .footerText{
-        padding: 0;
-        margin: 0;
-    }
     .mainContent{
         display: flex;
         align-items: center;
