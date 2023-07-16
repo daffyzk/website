@@ -19,27 +19,6 @@ html{
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.buttons{
-    position: sticky;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-button{
-    display: inline-block;
-    margin-top: 8px;
-    padding: 6px;
-    font-size: 16px;
-    width: 150px;
-    background-color: floralwhite;
-    border-color: azure;
-    border-style: none;
-    color: darkslategray;
-}
-button:hover{
-    background-color: aquamarine;
-    color: cornflowerblue;
-}
 .name{
     text-align: center;
     list-style: none;
@@ -59,7 +38,7 @@ button:hover{
 }
 
 
-/*---experience---*/
+/*---content that changes for mobile---*/
 .experience{
     display: flex;
     justify-content: center;
@@ -85,24 +64,46 @@ button:hover{
     display: flex;
     justify-content: center;
 }
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    margin-top: 8px;
+    padding: 6px;
+    font-size: 16px;
+    width: 150px;
+    background-color: floralwhite;
+    border-color: azure;
+    border-style: none;
+    color: darkslategray;
+}
+button:hover{
+    background-color: aquamarine;
+    color: cornflowerblue;
+}
 
-@media only screen and (max-width:950px) {
+@media only screen and (max-width:1250px) {
 
+    .buttons{
+        align-items: center;
+    }
     .buttons form{
-        border-color: cadetblue;
-        border-style: dashed;
-        margin: 2px;
-        width: 25%;
-        padding-bottom: 5px;
+        padding-left: 8%;
+        padding-right: 8%;
+        width: 30%;
     }
     button{
-        width: 100px;
-        align-items: center;
+        font-size: 30px;
+        margin: 3% 0 3% 0;
     }
     .experience{
+        font-size: 140%;
         display: flex;
         align-items: center;
-        margin: 0 30px 30px 30px;
+        margin: 0 5% 50px 5%;
+        padding: 1%;
     }
     .experience ul{
         list-style: none;

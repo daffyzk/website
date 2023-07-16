@@ -87,7 +87,7 @@ h2 p {
     margin: 0;
 }
 
-@media only screen and (max-width:950px) {
+@media only screen and (max-width:1250px) {
 
     .contactme{
         padding-bottom: 10px;

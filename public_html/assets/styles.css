@@ -72,7 +72,7 @@ button:hover{
     padding-right: 20%;
 }
 
-@media only screen and (max-width:950px) {
+@media only screen and (max-width:1250px) {
 
     .mainContent{
         display: flex;
