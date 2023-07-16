@@ -97,6 +97,10 @@ button:hover{
     padding-left: 20%;
     padding-right: 20%;
 }
+img{
+    width:100%;
+    max-width:1000px;
+}
 
 @media only screen and (max-width:1250px) {
 
