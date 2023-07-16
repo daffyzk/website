@@ -121,10 +121,11 @@ a:hover#comments {
     padding-right: 20%;
 }
 p.img_subtitle{
+    font-weight: 300;
     font-style: oblique;
-    padding: 0;
+    padding: 1px;
     margin: 0;
-    font-size: 90%;
+    font-size: 96%;
 }
 img{
     width:80%;
@@ -185,8 +186,8 @@ hr:after {
     .mainContent h4{
         font-size: 145%;
     }
-    .img_subtitle{
-        font-size: 85%;
+    p.img_subtitle{
+        font-size: 115%;
     }
     img{
         width:100%;
