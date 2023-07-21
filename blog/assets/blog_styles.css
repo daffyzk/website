@@ -1,4 +1,4 @@
-#footer{
+footer{
     position: fixed;
     padding-left: 10px;
     left: 5px;
@@ -7,7 +7,7 @@
     background-color:rgba(255, 245, 210, 0.61);
     padding-left: 10px;
 }
-.footerText{
+footer p{
     margin: 0;
     padding-top: 6px;
     font-size: smaller;
@@ -19,7 +19,7 @@ html{
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.header{
+header{
     top: 50px;
     float: left;
 }
@@ -58,7 +58,8 @@ div.blogPost{
     position: relative;
     top: 0;
     text-align: left;
-    margin: 0 0 0 5%;
+    margin: 0 5% 0 5%;
+    overflow-wrap: break-word;
 }
 .blogPost p{
     position: relative;
@@ -66,10 +67,10 @@ div.blogPost{
     text-align: right;
     margin: 2% 5% 0 0;
     font-size: small;
-    padding-bottom: 35px;
+    font-weight: bold;
 }
-.blogPost date{
-    margin: 0 10% 0 10%;
+.blogPost time{
+    margin: 0 5% 0 5%;
     font-size: 12px;
     font-weight: bold;
 }
@@ -110,6 +111,9 @@ a:hover#suggestions {
 a#hw-corne{
     background-size: 200px;
     background-image: url(crkbd/hw-corne1.png);
+}
+#hw-corne p{
+    padding-bottom: 35px;
 }
 
 .mainContent{
