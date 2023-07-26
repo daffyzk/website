@@ -1,4 +1,4 @@
-#footer{
+footer{
     position: fixed;
     padding-left: 10px;
     left: 5px;
@@ -7,7 +7,7 @@
     background-color:rgba(255, 245, 210, 0.61);
     padding-left: 10px;
 }
-.footerText{
+footer div p{
     margin: 0;
     padding-top: 6px;
     font-size: smaller;
@@ -19,18 +19,18 @@ html{
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.fullname{
+header div{
     display: flex;
     justify-content: center;
     align-items: center;
     padding-bottom: 10px;
 }
-.name{
+header div h1{
     margin-bottom: 0%;
     padding-bottom: 0%;
     font-weight: bolder;
 }
-.surname{
+header div h3{
     display: flex;
     margin: 0%;
     padding-top: 0%;

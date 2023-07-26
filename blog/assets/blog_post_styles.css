@@ -4,7 +4,7 @@ html{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.fulltitle{
+.title{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,13 +12,13 @@ html{
     margin-left: 10%;
     margin-right: 10%;
 }
-.title{
+.title h1{
     margin-bottom: 0%;
     padding-bottom: 0%;
     font-weight: bolder;
     margin-right: 2px;
 }
-.stitle{
+.title h3{
     display: flex;
     margin: 0%;
     padding-top: 0%;
@@ -65,7 +65,7 @@ a:hover{
     text-decoration: wavy;
     color:orangered;
 }
-#footer{
+footer{
     position: fixed;
     padding-left: 10px;
     left: 5px;
@@ -74,7 +74,7 @@ a:hover{
     background-color:rgba(255, 245, 210, 0.61);
     padding-left: 10px;
 }
-.footerText{
+footer div p{
     margin: 0;
     padding: 0;
     padding-top: 6px;
@@ -102,7 +102,7 @@ a:hover#comments {
     display: grid;
     background-color: rgb(255, 254, 250);
     margin: 0 25% 50px 25%;
-    overflow-y: scroll;
+    overflow-y: hidden;
     padding: 2%;
 }
 .mainContent p{

@@ -1,4 +1,4 @@
-#footer{
+footer{
     position: fixed;
     padding-left: 10px;
     left: 5px;
@@ -7,7 +7,7 @@
     background-color:rgba(255, 245, 210, 0.61);
     padding-left: 10px;
 }
-.footerText{
+footer div p{
     margin: 0;
     padding-top: 6px;
     font-size: smaller;
