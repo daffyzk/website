@@ -4,15 +4,10 @@
 //! cargo run -p example-static-file-server
 //! ```
 
-use axum::{
-    extract::Request, handler::HandlerWithoutStateExt, http::StatusCode, routing::get, Router,
-};
-use std::net::SocketAddr;
-use tower::ServiceExt;
-use tower_http::{
-    services::{ServeDir, ServeFile},
-    trace::TraceLayer,
-};
+use axum::{body::Body, extract::Path, http::{self, header, response::{self, Parts}, Extensions, HeaderMap, HeaderValue, StatusCode, Version}, response::{Html, IntoResponse, Response}, routing::get, Router};
+use std::{fs, net::SocketAddr, path::PathBuf, string::String};
+use tower_http::{services::ServeFile, trace::TraceLayer};
+use tracing::info;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
 #[tokio::main]
@@ -27,85 +22,10 @@ async fn main() {
         .init();
 
     tokio::join!(
-        serve(using_serve_dir(), 3001),
-        serve(using_serve_dir_with_static_fallback(), 3002),
-        serve(using_serve_dir_only_from_root_via_fallback(), 3003),
-        serve(using_serve_dir_with_handler_as_service(), 3004),
-        serve(two_serve_dirs(), 3005),
-        serve(calling_serve_dir_from_a_handler(), 3006),
-        serve(using_serve_file_from_a_route(), 3307),
+        serve(page_router().merge(css_router()), 12443),
     );
 }
 
-fn using_serve_dir() -> Router {
-    // serve the file in the "static" directory under `/static`
-    Router::new().nest_service("/static", ServeDir::new("static"))
-}
-
-fn using_serve_dir_with_static_fallback() -> Router {
-    // `ServeDir` allows setting a fallback if an asset is not found
-    // so with this `GET /static/doesnt-exist.jpg` will return `index.html`
-    // rather than a 404
-    let serve_dir = ServeDir::new("static").not_found_service(ServeFile::new("static/index.html"));
-
-    Router::new()
-        .route("/foo", get(|| async { "Hi from /foo" }))
-        .nest_service("/static", serve_dir.clone())
-        .fallback_service(serve_dir)
-}
-
-fn using_serve_dir_only_from_root_via_fallback() -> Router {
-    // you can also serve the static directly from the root (not nested under `/static`)
-    // by only setting a `ServeDir` as the fallback
-    let serve_dir = ServeDir::new("static").not_found_service(ServeFile::new("static/index.html"));
-
-    Router::new()
-        .route("/foo", get(|| async { "Hi from /foo" }))
-        .fallback_service(serve_dir)
-}
-
-fn using_serve_dir_with_handler_as_service() -> Router {
-    async fn handle_404() -> (StatusCode, &'static str) {
-        (StatusCode::NOT_FOUND, "Not found")
-    }
-
-    // you can convert handler function to service
-    let service = handle_404.into_service();
-
-    let serve_dir = ServeDir::new("static").not_found_service(service);
-
-    Router::new()
-        .route("/foo", get(|| async { "Hi from /foo" }))
-        .fallback_service(serve_dir)
-}
-
-fn two_serve_dirs() -> Router {
-    // you can also have two `ServeDir`s nested at different paths
-    let serve_dir_from_static = ServeDir::new("static");
-    let serve_dir_from_dist = ServeDir::new("dist");
-
-    Router::new()
-        .nest_service("/static", serve_dir_from_static)
-        .nest_service("/dist", serve_dir_from_dist)
-}
-
-#[allow(clippy::let_and_return)]
-fn calling_serve_dir_from_a_handler() -> Router {
-    // via `tower::Service::call`, or more conveniently `tower::ServiceExt::oneshot` you can
-    // call `ServeDir` yourself from a handler
-    Router::new().nest_service(
-        "/foo",
-        get(|request: Request| async {
-            let service = ServeDir::new("static");
-            let result = service.oneshot(request).await;
-            result
-        }),
-    )
-}
-
-fn using_serve_file_from_a_route() -> Router {
-    Router::new().route_service("/foo", ServeFile::new("static/index.html"))
-}
 
 async fn serve(app: Router, port: u16) {
     let addr = SocketAddr::from(([127, 0, 0, 1], port));
@@ -115,3 +35,87 @@ async fn serve(app: Router, port: u16) {
         .await
         .unwrap();
 }
+
+
+fn page_router() -> Router {
+    Router::new()
+        .nest_service("/", ServeFile::new("static/index.html"))
+        .nest_service("/contact", ServeFile::new("static/contact.html"))
+        .merge(blog_router())
+}
+
+
+fn css_router() -> Router {
+    Router::new()
+        .nest_service("/css/index", ServeFile::new("static/styles/index.css"))
+        .nest_service("/css/contact", ServeFile::new("static/styles/contact.css"))
+        .nest_service("/css/blog", ServeFile::new("static/styles/blog.css"))
+        .nest_service("/css/blog_post", ServeFile::new("static/styles/blog_post.css"))
+}
+
+
+fn blog_router() -> Router {
+    Router::new()
+        .route_service("/blog", ServeFile::new("static/blog.html"))
+        .route_service("/blog/:year", get(handle_yearly_blogs))
+        // .route("/blog/:year/:month", get(handle_post))
+        // .route("/blog/:year/:month/:post_name", get(handle_post))
+}
+
+#[axum::debug_handler]
+async fn handle_yearly_blogs(Path(year): Path<u16>) -> Response {
+    info!("year recieved: {year}");
+    let base_dir = PathBuf::from("static/blog/posts/");
+    let year_dir = base_dir.join(year.to_string());
+
+    let year_string = year_dir.clone().into_os_string().into_string().ok().unwrap();
+    // if only year is some, and year exists in dir, show page with all blog posts
+
+    
+    if year_dir.exists() {
+        
+        info!("file {year_string} exists");
+
+        // generate an actual html body for the response
+        let body = "<html><body><dir>yeah</dir></body></html>";
+
+        Response::builder()
+            .status(StatusCode::OK)
+            .header(header::CONTENT_TYPE, "text/html")
+            .body(Body::from(body)).unwrap()
+    } else {
+        (StatusCode::NOT_FOUND, format!("No blog posts found for year: {year}")).into_response()
+    }
+}
+
+// fn handle_post(Path((year, month, post_name)): Path<(u16, Option<u8>, Option<String>)>) -> 
+//     impl IntoResponse {
+//         let base_dir = PathBuf::from("static/blog/posts/");
+//         let year_dir = base_dir.join(year.to_string());
+
+//         // if only year is some, and year exists in dir, show page with all 
+
+//         match (year, month, post_name) {
+//             (year, Some(month), Some(post_name)) => get_blog_post(year, month, post_name),
+
+//             // Case 2: Year and month are present, but no post name
+//             (year, Some(month), None) => get_month_posts(),
+
+//             (year, None, None) => get_year_posts(),
+//         }
+
+//         // add month if provided
+//         if let Some(month) = month {
+//             let file_path = year_dir.join(format!("{:02}", month)).join(format!("{}", (post_name.as_str())));
+
+//             if month_dir.exists() && month_dir.is_file() {
+//                 // Read the HTML file
+//                 match fs::read_to_string(file_path) {
+//                     Ok(contents) => Html(contents), // Automatically sets "Content-Type: text/html"
+//                     Err(_) => (axum::http::StatusCode::INTERNAL_SERVER_ERROR, "Failed to read file".to_string()),
+//                 }
+//             }
+//         } else {
+//             (axum::http::StatusCode::NOT_FOUND, "File not found".to_string())
+//         }
+// }
