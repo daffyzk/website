@@ -1,11 +1,5 @@
-//! Run with
-//!
-//! ```not_rust
-//! cargo run -p example-static-file-server
-//! ```
-
-use axum::{body::Body, extract::Path, http::{self, header, response::{self, Parts}, Extensions, HeaderMap, HeaderValue, StatusCode, Version}, response::{Html, IntoResponse, Response}, routing::get, Router};
-use std::{fs, net::SocketAddr, path::PathBuf, string::String};
+use axum::{body::Body, extract::Path, http::{header, StatusCode}, response::{IntoResponse, Response}, routing::get, Router};
+use std::{net::SocketAddr, path::PathBuf};
 use tower_http::{services::ServeFile, trace::TraceLayer};
 use tracing::info;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
@@ -71,7 +65,7 @@ async fn handle_yearly_blogs(Path(year): Path<u16>) -> Response {
     let year_string = year_dir.clone().into_os_string().into_string().ok().unwrap();
     // if only year is some, and year exists in dir, show page with all blog posts
 
-    
+
     if year_dir.exists() {
         
         info!("file {year_string} exists");
