@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> {{ title }} </title>
+        <link rel="stylesheet" href="/css/blog_post">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <header>
+            <div class="fulltitle">
+                <h1> {{ title }} </h1>
+                <h3> {{ sub_title }} </h3>
+            </div>
+            <div>
+                <p class="date"> {{ date }} </p>
+            </div>
+        </header>
+        <div class="mainContent">
+            <p>
+                has been a disaster for my (x)...
+            </p>
+            <h3>Index:</h3>
+            <ol>
+                {%- for item in index.items -%}
+                    {{ item }}
+                {%- endfor -%}
+            </ol>
+            
+            {% block content %}<p>Yeah this isn't finished</p>{% endblock %}
+
+            <div class="the-end">
+                <p>Fin.</p>
+            </div>           
+        </div>
+        <footer>
+            <div style="margin:10px 20px 10px 0;">
+                <div style="display: flex;">
+                    <form><button formaction="https://daffy.tech/blog">go-back</button></form>
+                    <a id="comments" href="mailto:comments@mgc.sh">email something!</a>
+                </div>
+                <p>here since the <b>3rd of October of 2022</b></p>
+            </div>
+        </footer>
+    </body>
+</html>

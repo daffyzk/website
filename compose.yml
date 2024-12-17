@@ -1,0 +1,9 @@
+services:
+  daffy-website:
+    container_name: daffy_website
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 12443:12443
+    restart: unless-stopped
