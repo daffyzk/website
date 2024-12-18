@@ -7,7 +7,7 @@ use tower_http::{services::ServeFile, trace::TraceLayer};
 use tracing::info;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
 
-use handlers::handle_yearly_blogs;
+use handlers::{handle_yearly_blogs, handle_blog_post};
 
 #[tokio::main]
 async fn main() {
@@ -57,6 +57,6 @@ fn blog_router() -> Router {
     Router::new()
         .route_service("/blog", ServeFile::new("static/blog.html"))
         .route_service("/blog/:year", get(handle_yearly_blogs))
-        // .route("/blog/:year/:month", get(handle_post))
-        // .route("/blog/:year/:month/:post_name", get(handle_post))
+        // .route_service("/blog/:year/:month", get(handle_yearly_blogs))
+        .route_service("/blog/:year/:month/:post_name", get(handle_blog_post))
 }

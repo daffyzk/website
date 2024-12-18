@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>{% block title %}{{ title }} - My Site{% endblock %}</title>
-    {% block head %}{% endblock %}
-  </head>
-  <body>
-    <div id="content">
-      {% block content %}<p>Placeholder content</p>{% endblock %}
-    </div>
-  </body>
+<html>
+    <head>
+        <title>the blog</title>
+        <link rel="stylesheet" href="/css/blog">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        
+        <header>
+            <h2>A blog:</h2>
+            <p style="font-size: small; font-style: italic;">I guess now I should write some blog posts...</p>
+            
+        </header>
+
+        <div class="mainContent">
+            <ul>
+            {% block post_list %}
+                <li>
+                {%- for post in blog_posts -%}
+                    <div class="blogPost">
+                        <a href="{{ post.href }}">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.tags }}</p>
+                            <time> {{ post.date }}</time>
+                        </a>
+                        <img src="{{ post.image }}"></img>
+                    </div>
+                {%- endfor -%}
+                </li>
+            {% endblock %}
+                <li>
+                    <div class="blogPost">
+                        <a id="hw-corne" href="posts/2023/july/handwired-corne_en.html">
+                            <h2>handwired corne</h2>
+                            <p>Storytime | Build</p>
+                            <time>15-Jul-2023</time>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <footer>
+            <div style="margin:10px 20px 10px 0;">
+                <div style="display: flex;">
+                    <form><button class="button" formaction="https://mgc.sh">go-back</button></form>
+                    <a id="suggestions" href="mailto:suggestions@mgc.sh">email a suggestion!</a>
+                </div>
+                <p>here since the <b>3rd of October of 2022</b></p>
+            </div>
+        </footer>
+    </body>
 </html>
