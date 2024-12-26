@@ -77,7 +77,7 @@ impl BlogPostTemplate {
         let mut current_field = "";
     
         for line in file_content.lines() {
-            if line.starts_with("_") {
+            if line.starts_with("_*") {
                 current_field = &line[1..];
                 if let Some((_, value)) = line.split_once("=") {
                     match current_field {

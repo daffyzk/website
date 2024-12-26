@@ -1,199 +1,160 @@
 use crate::templates::{BlogPostTemplate, BlogPostPreview, BlogPostsListTemplate};
 
-use std::{fs::{read_dir, DirEntry, File, ReadDir}, io::{Error, ErrorKind, Read}};
+use std::{fs::{DirEntry, File}, io::{Error, ErrorKind, Read}, path::PathBuf};
 
 use axum::{extract::Path, http::StatusCode, response::{IntoResponse, Response}};
-use std::path::PathBuf;
 use tracing::{info, error};
 
-pub async fn handle_monthly_blogs(Path((year, month)): Path<(u16, Option<u8>)>) -> Response {
+pub async fn handle_blog(
+    Path((year, month, post_name)):
+    Path<(u16, Option<u8>, Option<String>)>
+    ) -> Response {
+
     info!("year recieved: {year}");
     let base_dir: PathBuf = PathBuf::from("static/blog/posts/");
     let year_dir: PathBuf = base_dir.join(year.to_string());
 
-    let year_string: String = year_dir.clone().into_os_string().into_string().ok().unwrap();
+    let year_str: String = year_dir.clone().into_os_string().into_string().ok().unwrap();
     // if only year is some, and year exists in dir, show page with all blog posts
 
     if year_dir.exists() {
-        info!("dir {year_string} exists");
+        info!("dir {year_str} exists");
         
-        let month_dir: PathBuf;
-        let month_string: String;
-        // if month.is_some() {
-            month_dir = year_dir.join(month.unwrap().to_string());
-            month_string = month_dir.clone().into_os_string().into_string().ok().unwrap();
-        // } else {
-        //     // return template for yearly blog posts
-        // }
-    
-        // get some real blog posts?
-        let mut blog_posts: Vec<BlogPostPreview> = vec![];
-                
-
-        if month_dir.exists() {
-            info!("dir {month_string} exists");
-            
-            // prints all directories available, should turn this data into a vector of blog posts
-            let files = get_all_files_in_dir(month_dir).unwrap();
-            for path in files {
-                let p = path.path();
-                println!("Name: {}", p.display());
-
-                // read the file into a string and send it
-                let mut filestr= String::new();
-                if File::open(path.path()).unwrap().read_to_string(&mut filestr).is_err() {
-                    error!("Could not open file");
+        match month {
+            Some(month) => {
+                let month_dir = year_dir.join(month.to_string());
+                let month_str = month_dir.clone().into_os_string().into_string().ok().unwrap();
+                // if there is some month & month exists
+                if month_dir.exists() {
+                    match post_name {
+                        Some(post) => {
+                            let post_dir = month_dir.join(post.clone());
+                            if post_dir.exists() {
+                                return blogpost_template(post_dir);  // if post exists, return blogpost_template for this post
+                            } else {
+                                let post_str: String = post_dir.into_os_string().into_string().unwrap();
+                                return not_found_error(post_str, post);
+                            }
+                        }
+                        None => {
+                            return blogpost_list_template(month_dir);
+                        }
+                    }
                 } else {
-                    blog_posts.push(
-                        BlogPostTemplate::from_file(
-                            p.into_os_string().into_string().unwrap(),
-                            &filestr).unwrap().preview
-                            // get the preview value for each blog post, since this is the monthly list of blog posts
-                    );
-                }              
-            }
-            info!("blog post {:?}", blog_posts);
-            let body: BlogPostsListTemplate = BlogPostsListTemplate {
-                blog_posts
-            };
-
-            body.into_response()
-
-        } else {
-            info!("uhh {month_string} does not exist");
-            (StatusCode::NOT_FOUND, format!("No blog posts found for month: {}", month.unwrap())).into_response()
+                    return not_found_error(month_str, month.to_string());
+                }
+                // check if there is some blogpost name
+            },
+            None => {
+                // yearly blogposts template
+                return blogpost_list_template(year_dir);
+            },
         }
-    } else {
-        info!("uhh {year_string} does not exist");
-        (StatusCode::NOT_FOUND, format!("No blog posts found for year: {year}")).into_response()
-    }
-}
-
-pub async fn handle_blog_post(Path((year, month, post)): Path<(u16, u8, String)>) -> Response {
-    info!("year recieved: {year}");
-    let base_dir: PathBuf = PathBuf::from("static/blog/posts/");
-    let year_dir: PathBuf = base_dir.join(year.to_string());
-
-    let year_string: String = year_dir.clone().into_os_string().into_string().ok().unwrap();
-    // if only year is some, and year exists in dir, show page with all blog posts
-
-    if year_dir.exists() {
-        info!("dir {year_string} exists");
-
-        let month_dir: PathBuf = year_dir.join(month.to_string());
-        let month_string: String = month_dir.clone().into_os_string().into_string().ok().unwrap();
-        if month_dir.exists() {
-            info!("dir {month_string} exists");
-            
-            // prints all directories available, should turn this data into a vector of blog posts
-            for path in month_dir.read_dir().unwrap() {
-                println!("Name: {}", path.unwrap().path().display())
-            }
-
-            // get some real blogposts?
-            let blog_posts: Vec<BlogPostPreview> = vec![
-                BlogPostPreview::from_params(
-                    "posts/2023/july/handwired-corne_en.html".to_string(),
-                    "handwired corne".to_string(),
-                    "storytime | build".to_string(),
-                    "15-Jul-2023".to_string(),
-                    "yeah".to_string()),
-                ];
         
-            let body = BlogPostsListTemplate {
-                blog_posts
-            };
-
-            body.into_response()
-        } else {
-            info!("uhh {month_string} does not exist");
-            (StatusCode::NOT_FOUND, format!("No blog posts found for month: {month}")).into_response()
-        }
     } else {
-        info!("uhh {year_string} does not exist");
-        (StatusCode::NOT_FOUND, format!("No blog posts found for year: {year}")).into_response()
+        not_found_error(year_str, year.to_string())
     }
 }
 
-// fn handle_post(Path((year, month, post_name)): Path<(u16, Option<u8>, Option<String>)>) -> 
-//     impl IntoResponse {
+// fn handle_post(
+//     Path((year, month, post_name)): 
+//     Path<(u16, Option<u8>, Option<String>)>
+// ) -> impl IntoResponse {
+
 //         let base_dir = PathBuf::from("static/blog/posts/");
 //         let year_dir = base_dir.join(year.to_string());
-
-//         // if only year is some, and year exists in dir, show page with all 
 
 //         match (year, month, post_name) {
 //             (year, Some(month), Some(post_name)) => get_blog_post(year, month, post_name),
 
-//             // Case 2: Year and month are present, but no post name
-//             (year, Some(month), None) => get_month_posts(),
+//             (year, Some(month), None) => get_month_posts(), //todo implement
 
-//             (year, None, None) => get_year_posts(),
-//         }
+//             (year, None, None) => get_year_posts(), //todo implement
 
-//         // add month if provided
-//         if let Some(month) = month {
-//             let file_path = year_dir.join(format!("{:02}", month)).join(format!("{}", (post_name.as_str())));
-
-//             if month_dir.exists() && month_dir.is_file() {
-//                 // Read the HTML file
-//                 match fs::read_to_string(file_path) {
-//                     Ok(contents) => Html(contents), // Automatically sets "Content-Type: text/html"
-//                     Err(_) => (axum::http::StatusCode::INTERNAL_SERVER_ERROR, "Failed to read file".to_string()),
-//                 }
-//             }
-//         } else {
-//             (axum::http::StatusCode::NOT_FOUND, "File not found".to_string())
+//             (year, None, Some(_)) => (axum::http::StatusCode::METHOD_NOT_ALLOWED, "Method not allowed".to_string()),
 //         }
 // }
 
-pub async fn handle_yearly_blogs(Path(year): Path<u16>) -> Response {
-    info!("year recieved: {year}");
-    let base_dir = PathBuf::from("static/blog/posts/");
-    let year_dir = base_dir.join(year.to_string());
+fn blogpost_list_template(dir: PathBuf) -> Response {
 
-    let year_string = year_dir.clone().into_os_string().into_string().ok().unwrap();
-    // if only year is some, and year exists in dir, show page with all blog posts
+    info!("dir {:?} exists", dir.clone().into_os_string());
 
-    if year_dir.exists() {
-        let month_dirs = read_dir(year_dir).unwrap(); // only shows the directory itself. not the files it contains
-        info!("file {year_string} exists");
-        
-        // get some real blogposts?
-        let blog_posts: Vec<BlogPostPreview> = vec![
-            // todo remove this sample
-            BlogPostPreview::from_params(
-                "posts/2023/july/handwired-corne_en.html".to_string(),
-                "handwired corne".to_string(),
-                "storytime | build".to_string(),
-                "15-Jul-2023".to_string(),
-                "yeah".to_string()),
-        ];
+    let mut blog_posts: Vec<BlogPostPreview> = Vec::new();
+    let files: Vec<DirEntry> = get_all_files_in_dir(dir).unwrap();
 
-        for value in month_dirs {
-            let contains = read_dir(value.unwrap().path());
+    for path in files {
+        let p: PathBuf = path.path();
+        println!("Name: {}", p.display());
 
-            if contains.is_ok() {
-                info!("dirs {}", contains.unwrap().next().unwrap().unwrap().path().display());
-            }
-            else {
-                info!("no files inside");
-            }
+        // read the file into a string and send it
+        let mut filestr= String::new();
+        if File::open(path.path()).unwrap().read_to_string(&mut filestr).is_err() {
+            error!("Could not open file");
+        } else {
+            blog_posts.push(
+                BlogPostTemplate::from_file(
+                    href_formatter(p.into_os_string().into_string().unwrap()),
+                    &filestr).unwrap().preview
+                    // we get the preview value for each blog post, since this is the list of blog posts
+            );
         }
+    }
+    info!("blog post {:?}", blog_posts);
+    let body: BlogPostsListTemplate = BlogPostsListTemplate {
+        blog_posts
+    };
 
-        let body = BlogPostsListTemplate {
-            blog_posts
-        };
-        body.into_response()
+    body.into_response()
+}
 
-    } else {
-        info!("uhh {year_string} does not exist");
-        (StatusCode::NOT_FOUND, format!("No blog posts found for year: {year}")).into_response()
+
+fn blogpost_template(dir: PathBuf) -> Response {
+    // when this function is called, it is assumed that the file it's calling exists
+    let dir_str: String = dir.clone().into_os_string().into_string().unwrap();
+    info!("dir {} exists", dir_str);
+
+    let file = File::open(dir);
+
+    match file {
+        Ok(mut file) => {        
+                // read the file into a string and send it
+                let mut file_buf= String::new();
+                match file.read_to_string(&mut file_buf) {
+                    Ok(_usize) => {
+                        info!("blog post {:?} was found and read", dir_str);         // we get the full blog post
+                        return BlogPostTemplate::from_file(
+                            href_formatter(dir_str),
+                                &file_buf).unwrap().into_response();
+                    }
+                    Err(_) => {return internal_server_error( format!("Could not read file {dir_str}"));},
+                }
+        },
+        Err(_) => {
+            return internal_server_error(format!("Could not open file {dir_str}"));
+        }
     }
 }
 
+
+fn not_found_error(file: String, value: String) -> Response {
+    info!("uhh {file} does not exist");
+    (StatusCode::NOT_FOUND, format!("No blog posts found in: {}", value)).into_response()
+}
+
+
+fn internal_server_error(err: String) -> Response {
+    info!("internal server error: {}", err);
+    (StatusCode::NOT_FOUND, format!("No blog posts found in: {}", err)).into_response()
+} 
+
+
+fn href_formatter(string: String) -> String {
+    string.replace("static/blog/posts/", "/blog/")
+}
+
+
 fn get_all_files_in_dir(directory: PathBuf) -> Result<Vec<DirEntry>, Error> {
-    let mut entries = Vec::new();
+    let mut entries: Vec<DirEntry> = Vec::new();
 
     match directory.read_dir() {
         Ok(dir_iter) => {
@@ -248,8 +209,9 @@ fn get_all_files_in_dir(directory: PathBuf) -> Result<Vec<DirEntry>, Error> {
     }
 }
 
+
 fn format_and_log(msg: &str, e: Option<Error>) -> String {
-    let err = if e.is_some() {
+    let err: String = if e.is_some() {
         format!("{}: {}", msg, e.unwrap())
     } else {
         format!("{}", msg)

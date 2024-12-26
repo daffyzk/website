@@ -1,16 +1,16 @@
-_title=handwired corne
-_subtitle=has been a disaster for my free time...
-_tags=Storytime | Build
-_date=15-Jul-2023
-_image=static/blog/assets/crkbd/square-corne.png
+_*title=handwired corne
+_*subtitle=has been a disaster for my free time...
+_*tags=Storytime | Build
+_*date=15-Jul-2023
+_*image=static/blog/assets/crkbd/square-corne.png
 
-_header_title=Building keyboards
-_header_subtitle=and its consequences...
-_header_date=15th of July 2023
+_*header_title=Building keyboards
+_*header_subtitle=and its consequences...
+_*header_date=15th of July 2023
 
 _indexes=Storytime,Build,Conclusion
 
-_content
+_*content
 
 <h2 id="storytime">Storytime</h2>
 <h4>My first DIY Keyboard, the Corne</h4>
