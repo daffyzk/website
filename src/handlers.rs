@@ -5,10 +5,31 @@ use std::{fs::{DirEntry, File}, io::{Error, ErrorKind, Read}, path::PathBuf};
 use axum::{extract::Path, http::StatusCode, response::{IntoResponse, Response}};
 use tracing::{info, error};
 
-pub async fn handle_blog(
+
+pub async fn handle_404() -> Response {
+    (StatusCode::NOT_FOUND, "Nothing to see here!").into_response()
+}
+ 
+
+pub async fn handle_blog_post(
     Path((year, month, post_name)):
-    Path<(u16, Option<u8>, Option<String>)>
-    ) -> Response {
+    Path<(u16, u8, String)> 
+) -> Response {
+
+    handle_blog(year, Some(month), Some(post_name))
+}
+
+pub async fn handle_monthly_blog_posts(Path((year, month)): Path<(u16, u8)>) -> Response {
+
+    handle_blog(year, Some(month), None)
+}
+
+pub async fn handle_yearly_blog_posts(Path(year): Path<u16>) -> Response {
+    
+    handle_blog(year, None, None)
+}
+
+fn handle_blog(year: u16, month: Option<u8>, post_name: Option<String>) -> Response {
 
     info!("year recieved: {year}");
     let base_dir: PathBuf = PathBuf::from("static/blog/posts/");
@@ -28,7 +49,8 @@ pub async fn handle_blog(
                 if month_dir.exists() {
                     match post_name {
                         Some(post) => {
-                            let post_dir = month_dir.join(post.clone());
+                            let post_file = post.clone() + ".bpd";
+                            let post_dir = month_dir.join(post_file);
                             if post_dir.exists() {
                                 return blogpost_template(post_dir);  // if post exists, return blogpost_template for this post
                             } else {
@@ -144,12 +166,13 @@ fn not_found_error(file: String, value: String) -> Response {
 
 fn internal_server_error(err: String) -> Response {
     info!("internal server error: {}", err);
-    (StatusCode::NOT_FOUND, format!("No blog posts found in: {}", err)).into_response()
+    (StatusCode::INTERNAL_SERVER_ERROR, format!("Internal server error: {}", err)).into_response()
 } 
 
 
-fn href_formatter(string: String) -> String {
-    string.replace("static/blog/posts/", "/blog/")
+fn href_formatter(mut string: String) -> String {
+    string = string.replace("static/blog/posts/", "/blog/");
+    string.replace(".bpd", "")
 }
 
 
@@ -195,7 +218,7 @@ fn get_all_files_in_dir(directory: PathBuf) -> Result<Vec<DirEntry>, Error> {
         Err(e) => match e.kind() {
             ErrorKind::NotFound => Err(
                 Error::new(ErrorKind::NotFound, 
-                    format_and_log("Directory not found", None)
+                    format_and_log("Directory not found", Some(e))
                     )),
             ErrorKind::PermissionDenied => Err(
                 Error::new(ErrorKind::PermissionDenied, 

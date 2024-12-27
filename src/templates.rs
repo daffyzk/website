@@ -1,5 +1,6 @@
 use askama_axum::Template;
 use std::error::Error;
+use tracing::{error, info, warn};
 
 #[derive(Template)]
 #[template(path = "blog_posts_page_template.html")]
@@ -29,7 +30,7 @@ impl BlogPostPreview{
     }
 }
 
-#[derive(Template)]
+#[derive(Template, Debug)]
 #[template(path = "blog_post_template.html")]
 pub struct BlogPostTemplate {
     pub preview: BlogPostPreview,
@@ -77,16 +78,19 @@ impl BlogPostTemplate {
         let mut current_field = "";
     
         for line in file_content.lines() {
+            // warn!("line: {}", line);
             if line.starts_with("_*") {
-                current_field = &line[1..];
-                if let Some((_, value)) = line.split_once("=") {
-                    match current_field {
+                current_field = &line[2..];
+                warn!("current-field: {}", current_field);
+                if let Some((field, value)) = current_field.split_once("=") {
+                    warn!("VALUE in field: {value}");
+                    match field {
                         "title" => title = value.to_string(),
                         "subtitle" => subtitle = value.to_string(),
                         "tags" => tags = value.to_string(),
                         "date" => date = value.to_string(),
                         "image" => image = value.to_string(),
-                        "header_title" => header_title = value.to_string(), 
+                        "header_title" => header_title = value.to_string(),
                         "header_subtitle" => header_subtitle = value.to_string(),
                         "header_date" => header_date = value.to_string(),
                         "indexes" => indexes = value.split(',').map(|s| s.to_string()).collect(),
@@ -98,9 +102,16 @@ impl BlogPostTemplate {
                 post_content.push('\n'); // adding newline to preserve md format
             }
         }
+
+        warn!("title:{title}, subtitle:{subtitle}, tags:{tags}, date:{date}, image:{image}, header_title:{header_title}, header_subtitle:{header_subtitle}, header_date:{header_date}, indexes:{:?}", indexes);
+
+        let blogpost = BlogPostTemplate::from_params(
+            BlogPostPreview::from_params(href.to_string(), title.clone().to_string(), tags.to_string(), date.to_string(), image.to_string()),
+            title.to_string(), subtitle.to_string(), header_title.to_string(), header_subtitle.to_string(), header_date.to_string(), indexes, post_content.to_string());
+
+        warn!("finally: {:?}", blogpost);
+
     
-        Ok(BlogPostTemplate::from_params(
-            BlogPostPreview::from_params(href, title.clone(), tags, date, image),
-            title, subtitle, header_title, header_subtitle, header_date, indexes, post_content))
+        Ok(blogpost)
     }
 }
