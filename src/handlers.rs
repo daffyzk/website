@@ -1,6 +1,6 @@
 use crate::templates::{BlogPostTemplate, BlogPostPreview, BlogPostsListTemplate};
 
-use std::{fs::{DirEntry, File, FileType}, io::{Error, ErrorKind, Read}, path::PathBuf};
+use std::{fs::{DirEntry, File}, io::{Error, ErrorKind, Read}, path::PathBuf};
 
 use axum::{extract::Path, http::StatusCode, response::{IntoResponse, Response}};
 use tracing::{info, error};
