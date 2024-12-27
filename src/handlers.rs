@@ -1,6 +1,6 @@
 use crate::templates::{BlogPostTemplate, BlogPostPreview, BlogPostsListTemplate};
 
-use std::{fs::{DirEntry, File}, io::{Error, ErrorKind, Read}, path::PathBuf};
+use std::{fs::{DirEntry, File, FileType}, io::{Error, ErrorKind, Read}, path::PathBuf};
 
 use axum::{extract::Path, http::StatusCode, response::{IntoResponse, Response}};
 use tracing::{info, error};
@@ -78,30 +78,12 @@ fn handle_blog(year: u16, month: Option<u8>, post_name: Option<String>) -> Respo
     }
 }
 
-// fn handle_post(
-//     Path((year, month, post_name)): 
-//     Path<(u16, Option<u8>, Option<String>)>
-// ) -> impl IntoResponse {
-
-//         let base_dir = PathBuf::from("static/blog/posts/");
-//         let year_dir = base_dir.join(year.to_string());
-
-//         match (year, month, post_name) {
-//             (year, Some(month), Some(post_name)) => get_blog_post(year, month, post_name),
-
-//             (year, Some(month), None) => get_month_posts(), //todo implement
-
-//             (year, None, None) => get_year_posts(), //todo implement
-
-//             (year, None, Some(_)) => (axum::http::StatusCode::METHOD_NOT_ALLOWED, "Method not allowed".to_string()),
-//         }
-// }
-
 fn blogpost_list_template(dir: PathBuf) -> Response {
 
     info!("dir {:?} exists", dir.clone().into_os_string());
 
     let mut blog_posts: Vec<BlogPostPreview> = Vec::new();
+
     let files: Vec<DirEntry> = get_all_files_in_dir(dir).unwrap();
 
     for path in files {
@@ -178,6 +160,8 @@ fn href_formatter(mut string: String) -> String {
 
 fn get_all_files_in_dir(directory: PathBuf) -> Result<Vec<DirEntry>, Error> {
     let mut entries: Vec<DirEntry> = Vec::new();
+
+    // check if files inside directory are paths
 
     match directory.read_dir() {
         Ok(dir_iter) => {

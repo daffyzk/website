@@ -1,6 +1,6 @@
 use askama_axum::Template;
 use std::error::Error;
-use tracing::{error, info, warn};
+use tracing::debug;
 
 #[derive(Template)]
 #[template(path = "blog_posts_page_template.html")]
@@ -31,7 +31,7 @@ impl BlogPostPreview{
 }
 
 #[derive(Template, Debug)]
-#[template(path = "blog_post_template.html")]
+#[template(path = "blog_post_template.html", escape = "none")]
 pub struct BlogPostTemplate {
     pub preview: BlogPostPreview,
     title: String,
@@ -78,12 +78,11 @@ impl BlogPostTemplate {
         let mut current_field = "";
     
         for line in file_content.lines() {
-            // warn!("line: {}", line);
             if line.starts_with("_*") {
                 current_field = &line[2..];
-                warn!("current-field: {}", current_field);
+                debug!("current-field: {}", current_field);
                 if let Some((field, value)) = current_field.split_once("=") {
-                    warn!("VALUE in field: {value}");
+                    debug!("VALUE in field: {value}");
                     match field {
                         "title" => title = value.to_string(),
                         "subtitle" => subtitle = value.to_string(),
@@ -103,13 +102,13 @@ impl BlogPostTemplate {
             }
         }
 
-        warn!("title:{title}, subtitle:{subtitle}, tags:{tags}, date:{date}, image:{image}, header_title:{header_title}, header_subtitle:{header_subtitle}, header_date:{header_date}, indexes:{:?}", indexes);
+        debug!("title:{title}, subtitle:{subtitle}, tags:{tags}, date:{date}, image:{image}, header_title:{header_title}, header_subtitle:{header_subtitle}, header_date:{header_date}, indexes:{:?}", indexes);
 
         let blogpost = BlogPostTemplate::from_params(
             BlogPostPreview::from_params(href.to_string(), title.clone().to_string(), tags.to_string(), date.to_string(), image.to_string()),
             title.to_string(), subtitle.to_string(), header_title.to_string(), header_subtitle.to_string(), header_date.to_string(), indexes, post_content.to_string());
 
-        warn!("finally: {:?}", blogpost);
+        debug!("finally: {:?}", blogpost);
 
     
         Ok(blogpost)
