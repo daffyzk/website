@@ -32,7 +32,7 @@ pub async fn handle_yearly_blog_posts(Path(year): Path<u16>) -> Response {
 fn handle_blog(year: u16, month: Option<u8>, post_name: Option<String>) -> Response {
 
     info!("year recieved: {year}");
-    let base_dir: PathBuf = PathBuf::from("static/blog/posts/");
+    let base_dir: PathBuf = PathBuf::from("static/blog_posts/");
     let year_dir: PathBuf = base_dir.join(year.to_string());
 
     let year_str: String = year_dir.clone().into_os_string().into_string().ok().unwrap();
@@ -153,7 +153,7 @@ fn internal_server_error(err: String) -> Response {
 
 
 fn href_formatter(mut string: String) -> String {
-    string = string.replace("static/blog/posts/", "/blog/");
+    string = string.replace("static/blog_posts/", "/blog/");
     string.replace(".bpd", "")
 }
 
