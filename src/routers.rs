@@ -1,12 +1,19 @@
 use axum::{routing::get, Router}; 
 use tracing::info;
+use rust_embed::RustEmbed;
+use axum_embed::ServeEmbed;
 use tower_http::services::ServeFile;
 use crate::handlers::{handle_blog_post, handle_monthly_blog_posts, handle_yearly_blog_posts, handle_404};
 
-pub fn route_images() -> Router {
+
+#[derive(RustEmbed, Clone)]
+#[folder = "static/assets"]
+struct Assets;
+
+pub fn route_assets() -> Router {
 
     info!("img router");
-    let router: Router = Router::new().route_service("/images/", ServeFile::new("static/images/"));
+    let router: Router = Router::new().route_service("/assets", ServeEmbed::<Assets>::new());
     
     return router;    
 }
@@ -23,7 +30,7 @@ pub fn route_page() -> Router {
         .nest_service("/contact", ServeFile::new("static/contact.html"))
         .merge(route_blog())
         .merge(route_css())
-        .merge(route_images())
+        .merge(route_assets())
         .fallback(handle_404)
 }
 
@@ -41,9 +48,9 @@ fn route_blog() -> Router {
 
 fn route_css() -> Router {
     Router::new()
-        .nest_service("/css/index", ServeFile::new("static/styles/index.css"))
-        .nest_service("/css/contact", ServeFile::new("static/styles/contact.css"))
-        .nest_service("/css/blog", ServeFile::new("static/styles/blog.css"))
-        .nest_service("/css/blog_post", ServeFile::new("static/styles/blog_post.css"))
+        .nest_service("/css/index", ServeFile::new("static/assets/styles/index.css"))
+        .nest_service("/css/contact", ServeFile::new("static/assets/styles/contact.css"))
+        .nest_service("/css/blog", ServeFile::new("static/assets/styles/blog.css"))
+        .nest_service("/css/blog_post", ServeFile::new("static/assets/styles/blog_post.css"))
 }
 

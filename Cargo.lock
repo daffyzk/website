@@ -307,6 +307,7 @@ dependencies = [
  "askama_axum",
  "axum",
  "axum-embed",
+ "rust-embed",
  "tokio",
  "tower",
  "tower-http",
