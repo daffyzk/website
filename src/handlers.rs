@@ -12,7 +12,7 @@ pub async fn handle_404() -> Response {
 
 pub async fn handle_blog_index() -> Response {
 
-    handle_blog(2023, None, None)  // todo update
+    handle_blog(None, None, None) 
 }
 
 pub async fn handle_blog_post(
@@ -20,66 +20,69 @@ pub async fn handle_blog_post(
     Path<(u16, u8, String)> 
 ) -> Response {
 
-    handle_blog(year, Some(month), Some(post_name))
+    handle_blog(Some(year), Some(month), Some(post_name))
 }
 
 pub async fn handle_monthly_blog_posts(Path((year, month)): Path<(u16, u8)>) -> Response {
 
-    handle_blog(year, Some(month), None)
+    handle_blog(Some(year), Some(month), None)
 }
 
 pub async fn handle_yearly_blog_posts(Path(year): Path<u16>) -> Response {
     
-    handle_blog(year, None, None)
+    handle_blog(Some(year), None, None)
 }
 
 
-fn handle_blog(year: u16, month: Option<u8>, post_name: Option<String>) -> Response {
-
-    info!("year recieved: {year}");
+fn handle_blog(year: Option<u16>, month: Option<u8>, post_name: Option<String>) -> Response {
+   
     let base_dir: PathBuf = PathBuf::from("static/blog_posts/");
-    let year_dir: PathBuf = base_dir.join(year.to_string());
 
-    let year_str: String = year_dir.clone().into_os_string().into_string().ok().unwrap();
-    // if only year is some, and year exists in dir, show page with all blog posts
+    match year {
+        Some(year) => {
+            info!("year recieved: {year}");
+            let year_dir: PathBuf = base_dir.join(year.to_string());
+            let year_str: String = year_dir.clone().into_os_string().into_string().ok().unwrap();
+            // if only year is some, and year exists in dir, show page with all blog posts
 
-    if year_dir.exists() {
-        info!("dir {year_str} exists");
+            if year_dir.exists() {
+                info!("dir {year_str} exists");
         
-        match month {
-            Some(month) => {
-                let month_dir = year_dir.join(month.to_string());
-                let month_str = month_dir.clone().into_os_string().into_string().ok().unwrap();
-                // if there is some month & month exists
-                if month_dir.exists() {
-                    match post_name {
-                        Some(post) => {
-                            let post_file = post.clone() + ".bpd";
-                            let post_dir = month_dir.join(post_file);
-                            if post_dir.exists() {
-                                return blogpost_template(post_dir);  // if post exists, return blogpost_template for this post
-                            } else {
-                                let post_str: String = post_dir.into_os_string().into_string().unwrap();
-                                return not_found_error(post_str, post);
+                match month {
+                    Some(month) => {
+                        let month_dir = year_dir.join(month.to_string());
+                        let month_str = month_dir.clone().into_os_string().into_string().ok().unwrap();
+                        if month_dir.exists() {  // if there is some month & month exists
+                            match post_name {
+                                Some(post) => {
+                                    let post_file = post.clone() + ".bpd";
+                                    let post_dir = month_dir.join(post_file);
+                                    if post_dir.exists() {
+                                        blogpost_template(post_dir)  // if post exists, return blogpost
+                                    } else {
+                                        let post_str: String = post_dir.into_os_string().into_string().unwrap();
+                                        not_found_error(post_str, post)
+                                    }
+                                }
+                                None => {
+                                    blogpost_list_template(month_dir) // list of this month's blogposts
+                                }
                             }
+                        } else {
+                            not_found_error(month_str, month.to_string())
                         }
-                        None => {
-                            return blogpost_list_template(month_dir);
-                        }
-                    }
-                } else {
-                    return not_found_error(month_str, month.to_string());
+                    },
+                    None => {
+                        blogpost_list_template(year_dir)  // list of this year's blogposts
+                    },
                 }
-                // check if there is some blogpost name
-            },
-            None => {
-                // yearly blogposts template
-                return blogpost_list_template(year_dir);
-            },
+            } else {
+                not_found_error(year_str, year.to_string())
+            }
+        },
+        None => { 
+            blogpost_list_template(base_dir.clone())  // list of all blogposts
         }
-        
-    } else {
-        not_found_error(year_str, year.to_string())
     }
 }
 
@@ -163,33 +166,24 @@ fn href_formatter(mut string: String) -> String {
 }
 
 
+// Returns all bpd file paths inside a directory or tree of directiories.
 fn get_all_files_in_dir(directory: PathBuf) -> Result<Vec<DirEntry>, Error> {
     let mut entries: Vec<DirEntry> = Vec::new();
-
-    // if there's no .bpd files, and there's directories
-
-    // check if paths inside directory are files or directories
-    // if they are directories, run itself for each directory
-    // if they are files, read the files
 
     match directory.read_dir() {
         Ok(dir_iter) => {
             for entry in dir_iter {
-                // for each entry in directory, check if it's a file.
                 match entry {
                     Ok(entry) => {
                         match entry.file_type() {
                             Ok(file_type) => {
-                                if file_type.is_file() {  // TODO and file type is "bpd"
-                                    // if it's a file, add it to the vector of dir_entries
-                                    entries.push(entry);
+                                if file_type.is_file() && entry.path().extension().unwrap() == "bpd" {
+                                    entries.push(entry); // if it's a bpd file, add it to entries vec
                                 } else if file_type.is_dir() {
                                     match get_all_files_in_dir(entry.path().to_path_buf()) {
                                         Ok(files) => {
-                                            // get all files inside dir - done
-                                            // now add the new entries into the entries list
                                             for file in files {
-                                                entries.push(file);
+                                                entries.push(file);  // add entry files to list
                                             }
                                         },
                                         Err(_) => {

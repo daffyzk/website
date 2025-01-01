@@ -3,7 +3,7 @@ use tracing::info;
 use rust_embed::RustEmbed;
 use axum_embed::ServeEmbed;
 use tower_http::services::ServeFile;
-use crate::handlers::{handle_blog_post, handle_monthly_blog_posts, handle_yearly_blog_posts, handle_404};
+use crate::handlers::{handle_blog_post, handle_monthly_blog_posts, handle_yearly_blog_posts, handle_blog_index, handle_404};
 
 
 #[derive(RustEmbed, Clone)]
@@ -39,7 +39,7 @@ fn route_blog() -> Router {
 
     info!("blog router");
     Router::new()
-        .route_service("/blog", ServeFile::new("static/blog.html"))
+        .route("/blog", get(handle_blog_index))
         .route("/blog/:year/:month/:post_name", get(handle_blog_post))
         .route("/blog/:year/:month", get(handle_monthly_blog_posts))
         .route("/blog/:year", get(handle_yearly_blog_posts))        
