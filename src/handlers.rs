@@ -9,7 +9,11 @@ use tracing::{info, error};
 pub async fn handle_404() -> Response {
     (StatusCode::NOT_FOUND, "Nothing to see here!").into_response()
 }
- 
+
+pub async fn handle_blog_index() -> Response {
+
+    handle_blog(2023, None, None)  // todo update
+}
 
 pub async fn handle_blog_post(
     Path((year, month, post_name)):
@@ -28,6 +32,7 @@ pub async fn handle_yearly_blog_posts(Path(year): Path<u16>) -> Response {
     
     handle_blog(year, None, None)
 }
+
 
 fn handle_blog(year: u16, month: Option<u8>, post_name: Option<String>) -> Response {
 
@@ -79,13 +84,12 @@ fn handle_blog(year: u16, month: Option<u8>, post_name: Option<String>) -> Respo
 }
 
 fn blogpost_list_template(dir: PathBuf) -> Response {
-
-    info!("dir {:?} exists", dir.clone().into_os_string());
+    // old code 
+    info!("dir {:?} exists", dir.clone());
 
     let mut blog_posts: Vec<BlogPostPreview> = Vec::new();
 
     let files: Vec<DirEntry> = get_all_files_in_dir(dir).unwrap();
-
     for path in files {
         let p: PathBuf = path.path();
         println!("Name: {}", p.display());
@@ -113,7 +117,8 @@ fn blogpost_list_template(dir: PathBuf) -> Response {
 
 
 fn blogpost_template(dir: PathBuf) -> Response {
-    // when this function is called, it is assumed that the file it's calling exists
+    // when this function is called, it is assumed that the file it's calling exists (based on the
+    // caller)
     let dir_str: String = dir.clone().into_os_string().into_string().unwrap();
     info!("dir {} exists", dir_str);
 
@@ -161,17 +166,36 @@ fn href_formatter(mut string: String) -> String {
 fn get_all_files_in_dir(directory: PathBuf) -> Result<Vec<DirEntry>, Error> {
     let mut entries: Vec<DirEntry> = Vec::new();
 
-    // check if files inside directory are paths
+    // if there's no .bpd files, and there's directories
+
+    // check if paths inside directory are files or directories
+    // if they are directories, run itself for each directory
+    // if they are files, read the files
 
     match directory.read_dir() {
         Ok(dir_iter) => {
             for entry in dir_iter {
+                // for each entry in directory, check if it's a file.
                 match entry {
                     Ok(entry) => {
                         match entry.file_type() {
                             Ok(file_type) => {
-                                if file_type.is_file() {
+                                if file_type.is_file() {  // TODO and file type is "bpd"
+                                    // if it's a file, add it to the vector of dir_entries
                                     entries.push(entry);
+                                } else if file_type.is_dir() {
+                                    match get_all_files_in_dir(entry.path().to_path_buf()) {
+                                        Ok(files) => {
+                                            // get all files inside dir - done
+                                            // now add the new entries into the entries list
+                                            for file in files {
+                                                entries.push(file);
+                                            }
+                                        },
+                                        Err(_) => {
+                                            error!("error getting files for dir {:?}", entry)
+                                        },
+                                    }
                                 }
                             }
                             Err(e) => 
