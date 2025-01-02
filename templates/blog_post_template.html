@@ -2,7 +2,7 @@
 <html>
     <head>
         <title> {{ title }} </title>
-        <link rel="stylesheet" href="/css/blog_post">
+        <link rel="stylesheet" href="/assets/styles/blog_post.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
@@ -24,7 +24,7 @@
             <ol>
                 {%- for item in indexes -%}
                     <li>
-                        <a id="index" href="#{{ item }}">{{ item }}</a>
+                        <a id="index" href="#{{ item.to_lowercase() }}">{{ item }}</a>
                     </li>
                 {%- endfor -%}
             </ol>

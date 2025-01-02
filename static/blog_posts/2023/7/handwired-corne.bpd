@@ -31,7 +31,7 @@ _*content
     finally concluding on building a 75% keyboard. <br />
     It was a no brainer, it had all the keys I needed for my video-gaming needs, and I wasn't planning on using it for anything else. <br />
 </p>
-<img src="../../../assets/kbs/keychron75.jpg" alt="Image of a 75% keyboard | Model = Keychron K3">
+<img src="/assets/images/kbs/keychron75.jpg" alt="Image of a 75% keyboard | Model = Keychron K3">
 <p class="img_subtitle">
     A Keychron K3 (75% keyboard). <br />
 </p>
@@ -48,7 +48,7 @@ _*content
 </p>           
 <h3>The title for this section is this mp3:
     <audio controls style="padding: 0; margin: 0;">
-        <source src="../../../assets/sounds/holy.mp3">
+        <source src="/assets/sounds/holy.mp3">
         No audio for you. (Your browser sucks, get one that is HTML5 compatible)
     </audio>
 </h3>
@@ -61,7 +61,7 @@ _*content
 <p>
     Build I did, took me a good 200 hours of blender time, but I managed to create the epitome of gaming mice, <a target=”_blank” href="https://github.com/maurogarciac/w303"><b>the w303</b></a>.
 </p>
-<img src="../../../assets/w303/w303v1.jpg" alt="Image of the w303 | Wireless g303 project">
+<img src="/assets/images/w303/w303v1.jpg" alt="Image of the w303 | Wireless g303 project">
 <p class="img_subtitle">
     <i>"A logitech g303 shaped mouse that's fully wireless, solid as a rock, weighs only 50 grams and is 100% 3D printable with no required extra parts"</i>  <br />
     - Me.  (I probably said that at some point) <br />
@@ -77,7 +77,7 @@ _*content
     [Thought I was going to find it but couldn't, this video is long lost to the ethers of the internet] <br />
     [Just imagine a video of a guy putting this small little keyboard inside is backpack - a cut - and then he is pulling it out for a college class or something] <br />
 </p>
-<img src="../../../assets/kbs/crkbd.jpg" alt="Image of a cool Corne Keyboard build I found"> <br />
+<img src="/assets/images/kbs/crkbd.jpg" alt="Image of a cool Corne Keyboard build I found"> <br />
 <p class="img_subtitle">
     This keyboard looked INCREDIBLE, so portable, so neat. <br />
 </p>
@@ -124,7 +124,7 @@ _*content
     In my case, I didn't need any downward facing LEDs, no addressable RGB backlight for the keys or any other bells and whistles. <br />
     By just removing everything else besides the switch wires from the PCB project in KiCad, I got myself the wiring diagram that I yearned for. <br />
 </p>
-<img src="../../../assets/kbs/corne-pcb.png" alt="Image of the original Corne PCB in Kicad"> <br />
+<img src="/assets/images/kbs/corne-pcb.png" alt="Image of the original Corne PCB in Kicad"> <br />
 <p class="img_subtitle">
     This is how the pcb looks in KiCad, scary stuff, I know. <br />
 </p>
@@ -173,7 +173,7 @@ _*content
     One wire on every column, going through every switch. And one diode per switch, per row. <br />
     Yes, the direction of the diodes is important. Black side up in this case.<br />
 </p>
-<img src="../../../assets/crkbd/old_9.jpg" alt="Image of my corne's matrix wiring"> <br />
+<img src="/assets/images/crkbd/old_9.jpg" alt="Image of my corne's matrix wiring"> <br />
 <p class="img_subtitle">
     The calm before the storm.<br />
 </p>
@@ -181,7 +181,7 @@ _*content
     One of the disadvantages of using wires instead of a PCB is that it does take longer to build, but it's not that bad. <br />
     What was pretty bad, was my wiring behind the micro-controller. <br />
 </p>
-<img src="../../../assets/crkbd/old_6.jpg" alt="Image of my corne's spaghetti wiring behind the microcontroller"> <br />
+<img src="/assets/images/crkbd/old_6.jpg" alt="Image of my corne's spaghetti wiring behind the microcontroller"> <br />
 <p class="img_subtitle">
         To those familiar with spaghetti code, this is the equivalent to that, but in electronics.<br />
 </p>
@@ -193,7 +193,7 @@ _*content
     The idea is that it will remove the need for any complicated spaghetti wiring in the future, for a much lower price than a full Corne PCB. <br />
     <a target=”_blank” >[will link some blog-post here once it's all tried and tested]</a>
 </p>
-<img src="../../../assets/crkbd/old_10.jpg" alt="Image of my corne build revision 1"> <br />
+<img src="/assets/images/crkbd/old_10.jpg" alt="Image of my corne build revision 1"> <br />
 <p class="img_subtitle">
     No matter how ugly the wiring looks, no one could deny that the keyboard was working perfectly. <br />
 </p>
@@ -219,7 +219,7 @@ _*content
     Realistically, even with a couple screws missing, the keyboard was still in working order, and I was happy with that. <br />
     <br />
 </p>
-<img src="../../../assets/crkbd/old_8.jpg" alt="Image of my corne, with the missing screw"> <br />
+<img src="assets/images/crkbd/old_8.jpg" alt="Image of my corne, with the missing screw"> <br />
 <p class="img_subtitle">
     First instance of when I started losing my screws.<br />
 </p>
@@ -232,7 +232,7 @@ _*content
     What could I do???               
 </p>
 <p>The answer was staring right at me! </p>
-<img src="../../../assets/kbs/shibari-typewriter.jpg" alt="Image of a Shibari Typewriter">
+<img src="/assets/images/kbs/shibari-typewriter.jpg" alt="Image of a Shibari Typewriter">
 <p class="img_subtitle">
     This is the most PG-13 image I could find of Shibari, and it has a keyb
     oard!<br />
@@ -247,8 +247,8 @@ _*content
     <br />
 </p>
 <div id="images">
-    <img src="../../../assets/crkbd/shibari1.jpg" alt="Image of my corne, all tied up (back)"> <br />
-    <img src="../../../assets/crkbd/shibari2.jpg" alt="Another image of my corne, all tied up (front)"> <br />
+    <img src="/assets/images/crkbd/shibari1.jpg" alt="Image of my corne, all tied up (back)"> <br />
+    <img src="/assets/images/crkbd/shibari2.jpg" alt="Another image of my corne, all tied up (front)"> <br />
 </div>
 <p class="img_subtitle">
     Quite stylish if you ask me.<br />
@@ -266,7 +266,7 @@ _*content
 <p>
     It's current state is good enough to use at home, and take to a cafe when I'm out and about doing my computer stuff. 
 </p>
-<img src="../../../assets/crkbd/hw-corne1.png" alt="Image of a my current corne build, in all it's glory"> <br />
+<img src="/assets/images/crkbd/hw-corne1.png" alt="Image of a my current corne build, in all it's glory"> <br />
 <p class="img_subtitle">
     If it's good enough for... ehhh... idk, I just want to say it's good enough for me. <br />
 </p>
