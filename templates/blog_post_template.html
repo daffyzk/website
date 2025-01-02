@@ -6,35 +6,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <h1 style="display: none;"> html go brrrrrr</h1>
-        <header>
-            <div class="title">
-                <h1> {{ header_title }} </h1>
-                <h3> {{ header_subtitle }} </h3>
-            </div>
-            <div>
-                <p class="date"> {{ header_date }} </p>
-            </div>
-        </header>
-        <div class="mainContent">
-            <p>
-                {{ subtitle }}
-            </p>
-            <h3>Index:</h3>
-            <ol>
-                {%- for item in indexes -%}
-                    <li>
-                        <a id="index" href="#{{ item.to_lowercase() }}">{{ item }}</a>
-                    </li>
-                {%- endfor -%}
-            </ol>
-            
-            {{ content }}
 
-            <div class="the-end">
-                <p>Fin.</p>
-            </div>           
-        </div>
+        <input type="checkbox" id="theme" class="theme">
+        <label for="theme" aria-label="Toggle Theme">
+            <span class="toggle-indicator"></span>
+        </label>
+
+        <main>
+
+            <h1 style="display: none;"> html go brrrrrr</h1>
+            <header>
+                <div class="title">
+                    <h1> {{ header_title }} </h1>
+                    <h3> {{ header_subtitle }} </h3>
+                    </div>
+                <div>
+                    <p class="date"> {{ header_date }} </p>
+                </div>
+            </header>
+            <div class="mainContent">
+                <p>
+                    {{ subtitle }}
+                </p>
+                <h3>Index:</h3>
+                <ol>
+                    {%- for item in indexes -%}
+                        <li>
+                            <a id="index" href="#{{ item.to_lowercase() }}">{{ item }}</a>
+                        </li>
+                    {%- endfor -%}
+                </ol>
+            
+                {{ content }}
+
+                <div class="the-end">
+                    <p>Fin.</p>
+                </div>           
+            </div>
+        </main>
+        
         {% include "footer.html" %}
     </body>
 </html>

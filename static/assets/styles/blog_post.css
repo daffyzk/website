@@ -1,8 +1,74 @@
 html{
-    background-color: floralwhite;
-    color: black;
+    /*background-color: floralwhite;
+    color: black;*/
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+/
 }
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+label[for="theme"] {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 60px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 34px;
+  cursor: pointer;
+}
+
+.toggle-indicator {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: 4px;
+  background: #fff;
+  border-radius: 50%;
+  transition: margin-left 0.2s;
+}
+
+/* when checked, move the indicator and change its color */
+#theme:checked ~ label[for="theme"] .toggle-indicator {
+  margin-left: 26px;
+  background: #000;
+}
+
+#theme:checked ~ label[for="theme"] {
+  background: #222;
+}
+
+
+input[type='checkbox']#theme {
+  display: none;
+}
+
+/* themes */
+
+main {
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+#theme:checked ~ main {
+    /* dark theme */
+    --bg-color: #121212;
+    --text-color: floralwhite;
+    --accent-color: #ffffff;
+}
+
+#theme:not(:checked) ~ main {
+   /* light theme */ 
+    --bg-color: floralwhite;
+    --text-color: #333333;
+    --accent-color: #000000; 
+}
+
+/* content styles */
 
 .title{
     display: flex;
@@ -26,24 +92,28 @@ html{
     font-style: italic;
     font-family: monospace;
 }
+
 li form{
     text-align: center;
     border-width: 0.1em;
 }
+
 button{
     width: 150px;
     margin-top: 8px;
     padding: 6px;
     font-size: 20px;
-    background-color: rgb(254, 255, 248);
+    background-color:var(--bg-color);
     border-color: azure;
     border-style: none;
-    color: darkslategray;
+    color: var(--text-color);
 }
+
 button:hover{
     background-color: aquamarine;
     color: cornflowerblue;
 }
+
 .the-end{
     font-style: oblique;
     font-family: cursive;
@@ -55,7 +125,7 @@ button:hover{
 }
 a:link{
     text-decoration: none;
-    color:black;
+    color: var(--text-color);
 }
 a:visited{
     text-decoration: none;
@@ -87,10 +157,10 @@ footer div p{
     margin-top: 8px;
     padding: 6px;
     font-size: 20px;
-    background-color: rgb(254, 255, 248);
+    background-color: var(--bg-color);
     border-color: azure;
     border-style: none;
-    color: darkslategray;
+    color: var(--text-color);
 }
 a:hover#comments {
     background-color: aquamarine;
@@ -100,8 +170,7 @@ a:hover#comments {
 /*---content that changes for mobile---*/
 .mainContent{
     display: grid;
-    background-color: rgb(255, 254, 250);
-    margin: 0 25% 50px 25%;
+    margin: 0 25% 0 25%;
     overflow-y: hidden;
     padding: 2%;
 }
@@ -134,17 +203,17 @@ img{
 }
 hr{
     border: 10px;
-    color: #333;
+    color: var(--text-color);
     overflow: visible;
     text-align: center;
     height: 5px;
 }
-hr:after {
+/*hr:after {
     background:  rgb(255, 254, 250);
     content: '_ _ _ _ _';
     padding: 0 4px;
     position: relative;
-}
+}*/
 .date{
     font-size: 1.5em;
     padding-left: 32%;
@@ -158,7 +227,7 @@ hr:after {
 @media only screen and (max-width:1250px) {
 
     .mainContent{
-        margin: 0 5% 50px 5%;
+        margin: 0 5% 0 5%;
         padding: 1%;
     }
     .mainContent p{
