@@ -7,31 +7,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        
-        <header>
-            <h2>A blog:</h2>
-            <p style="font-size: small; font-style: italic;">I guess now I should write some blog posts...</p>
-            
-        </header>
+        <input type="checkbox" id="theme" class="theme">
+        <label for="theme" aria-label="Toggle Theme">
+            <span class="toggle-indicator"></span>
+        </label>
 
-        <div class="mainContent">
-            <ul>
+        <main>
+            <header>
+                <h2>A blog:</h2>
+                <p style="font-size: small; font-style: italic;">I guess now I should write some blog posts...</p>
+            
+            </header>
+
+           <ul>
             {% block post_list %}
                 <li>
                 {%- for post in blog_posts -%}
-                    <div class="blogPost">
-                        <a href="{{ post.href }}">
+                    <a class="blogPost" href="{{ post.href }}">
+                        <div class="post_content">
                             <img src="{{ post.image }}" class="thumbnail"></img>
                             <h2>{{ post.title }}</h2>
                             <p>{{ post.tags }}</p>
-                            <time> {{ post.date }}</time>
-                        </a>
-                    </div>
+                            <p class="time"> {{ post.date }}</p>
+                        </div>
+                    </a>
                 {%- endfor -%}
                 </li>
             {% endblock %}
             </ul>
-        </div>
+        </main>
 
         {% include "footer.html" %}
     </body>
