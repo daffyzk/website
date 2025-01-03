@@ -1,0 +1,18 @@
+/* footer */
+
+footer{
+    position: fixed;
+    padding-left: 10px;
+    left: 5px;
+    bottom: 0;
+    width: auto;
+    background-color:rgba(255, 245, 210, 0.61);
+    padding-left: 10px;
+}
+footer p{
+    margin: 0;
+    padding-top: 6px;
+    font-size: smaller;
+    font-style: italic;
+}
+

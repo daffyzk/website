@@ -135,22 +135,6 @@ a:hover{
     text-decoration: wavy;
     color:orangered;
 }
-footer{
-    position: fixed;
-    padding-left: 10px;
-    left: 5px;
-    bottom: 0;
-    width: auto;
-    background-color:rgba(255, 245, 210, 0.61);
-    padding-left: 10px;
-}
-footer div p{
-    margin: 0;
-    padding: 0;
-    padding-top: 6px;
-    font-size: smaller;
-    font-style: italic;
-}
 #comments{
     margin-left: 5px;
     width: 180px;
