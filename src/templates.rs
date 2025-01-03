@@ -5,7 +5,17 @@ use tracing::debug;
 #[derive(Template)]
 #[template(path = "blog_posts_page_template.html")]
 pub struct BlogPostsListTemplate {
-    pub blog_posts: Vec<BlogPostPreview>, 
+    pub blog_posts: Vec<BlogPostPreview>,
+    url: String,
+}
+
+impl BlogPostsListTemplate {
+    pub fn from_params(blog_posts: Vec<BlogPostPreview>) -> BlogPostsListTemplate{
+        BlogPostsListTemplate {
+            blog_posts,
+            url: "/".to_string()
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -41,6 +51,7 @@ pub struct BlogPostTemplate {
     header_date: String,
     indexes: Vec<String>,
     content: String,
+    url: String,
 }
 
 impl BlogPostTemplate {
@@ -55,7 +66,8 @@ impl BlogPostTemplate {
             header_subtitle,
             header_date, 
             indexes, 
-            content
+            content,
+            url: "/blog".to_string()
         }
     }
 

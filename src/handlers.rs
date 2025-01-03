@@ -111,9 +111,7 @@ fn blogpost_list_template(dir: PathBuf) -> Response {
         }
     }
     info!("blog post {:?}", blog_posts);
-    let body: BlogPostsListTemplate = BlogPostsListTemplate {
-        blog_posts
-    };
+    let body: BlogPostsListTemplate = BlogPostsListTemplate::from_params(blog_posts);
 
     body.into_response()
 }
