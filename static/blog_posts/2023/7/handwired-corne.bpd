@@ -191,7 +191,7 @@ _*content
 </p>
 <p>
     The idea is that it will remove the need for any complicated spaghetti wiring in the future, for a much lower price than a full Corne PCB. <br />
-    <a target=”_blank” >[will link some blog-post here once it's all tried and tested]</a>
+    <a href="https://tecladito.com" >[will link some blog-post here once it's all tried and tested]</a>
 </p>
 <img src="/assets/images/crkbd/old_10.jpg" alt="Image of my corne build revision 1"> <br />
 <p class="img_subtitle">
@@ -234,8 +234,7 @@ _*content
 <p>The answer was staring right at me! </p>
 <img src="/assets/images/kbs/shibari-typewriter.jpg" alt="Image of a Shibari Typewriter">
 <p class="img_subtitle">
-    This is the most PG-13 image I could find of Shibari, and it has a keyb
-    oard!<br />
+    This is the most PG-13 image I could find of Shibari, and it has a keyboard!<br />
 </p>
 <p>
     All I had to do was look back a bit, right at the Edo period in Japan. 
@@ -243,7 +242,7 @@ _*content
     (the ancient Japanese art of 'tying cool knots') was invented (or discovered, something like that). <br />
     Wait what did you say? BDSM? What is that? Some sort of UNIX alternative? Let's just ignore that and keep talking about keyboards.<br />
     <br />
-    After a couple hours of tutorials <i>(I just lied here btw)</i> and a handful of minutes spent tying up <i>some loose ends</i>, this is the final product:
+    After a couple hours of tutorials <i>(jk I just made it up on the spot)</i> and a handful of minutes tying up <i>some loose ends</i>, this is the final product:
     <br />
 </p>
 <div id="images">
@@ -268,25 +267,21 @@ _*content
 </p>
 <img src="/assets/images/crkbd/hw-corne1.png" alt="Image of a my current corne build, in all it's glory"> <br />
 <p class="img_subtitle">
-    If it's good enough for... ehhh... idk, I just want to say it's good enough for me. <br />
+    If it's good enough for Australia, is good enough for me. <br />
 </p>
 
 <hr />
 <h2 id="conclusion">Conclusion</h2>
 <h3>From the ashes, another era... emerges?</h3>
 <p>
-    There is always another project, another keyboard to be built. <br />
+    There is always another project, or another keyboard to be built. <br />
     One of the things I noticed after giving my wife the last standard mechanical keyboard I had (The one on my gaming puter), is that a crkbd, is not very good for gaming. <br />
     The row stagger makes it really hard to use wasd, ctrl is on a wierd spot, and the most important part, you need to switch layers to access the number keys. <br />
-    How the heck... am I supposed to switch from my picaxe to my sword while running from an archer in minecraft??!!! <br />
-    Ain't no way anybody will catch me doing a layer shift!!! 
     Specially since I have mouse-keys configured on my Lower layer, I can't even access asd when using the numbers. <br />
-    No, no, no! This is unacceptable! I MUST build another keyboard... It's the only solution. <br />
 </p>
-<h4>The woteec keyboard, coming soon to a thingiverse near you.</h4>
 <p>
-    The <i>'worst-typing-experience-ever-created'</i> or <i><b>wootec</b></i>, is a 75% orthotropic split keyboard. <br />
-    Designed with gaming-first and russian-language compatibility in mind <br />
-    <br />
-    If you have any questions about the naming choice, don't worry, you will see what I mean... <br />
+    So the plan is to design and build another split keyboard! <br />
+    What I have in mind, is an ortholinear keyboard with un-even split, that gives left hand access up to the M key (that would be two columns more than normal) <br />
+    The main benefit of this design, is that the left side would be more compact than a 60%, which is what I was using before, and still have all the keys I need for my CSGO nade bindings. <br />
+    It shall be called "woteec", short for "WOrst Typing Experience Ever Created", though I highly doubt it actually would be the worst, since alphabetic keyboards exist. <br />
 </p>

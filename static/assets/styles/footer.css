@@ -1,13 +1,10 @@
-/* footer */
-
 footer{
     position: fixed;
-    padding-left: 10px;
-    left: 5px;
+    padding: 16px 16px 10px 16px;
+    left: 0;
     bottom: 0;
     width: auto;
     background-color:rgba(255, 245, 210, 0.61);
-    padding-left: 10px;
 }
 footer p{
     margin: 0;
@@ -16,10 +13,14 @@ footer p{
     font-style: italic;
 }
 
+#footer_content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #suggestions{
-    margin-left: 5px;
-    width: 190px;
-    margin-top: 8px;
+    width: 100px;
     padding: 6px;
     font-size: 20px;
     background-color: rgb(254, 255, 248);
@@ -27,9 +28,9 @@ footer p{
     border-style: none;
     color: darkslategray;
 }
+
 button#footer_button{
     width: 100px;
-    margin-top: 8px;
     padding: 6px;
     font-size: 20px;
     background-color: rgb(254, 255, 248);
@@ -37,6 +38,7 @@ button#footer_button{
     border-style: none;
     color: darkslategray;
 }
+
 button:hover#footer_button{
     background-color: aquamarine;
     color: cornflowerblue;
