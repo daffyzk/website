@@ -1,8 +1,5 @@
 html{
-    /*background-color: floralwhite;
-    color: black;*/
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-/
 }
 
 body {
@@ -86,8 +83,11 @@ div.blogPost{
     top: 0;
     float: left;
 }
+.blogPost a img.thumbnail {
+    position: absolute;
+    width: 150px;
+}
 .blogPost a{
-    background-color: rgb(212, 169, 94);
     display: block;
     height: 100%;
     padding: 0;
@@ -97,8 +97,10 @@ div.blogPost{
 .blogPost a:link{
     text-decoration: none;
 }
-.blogPost a:hover {
-    background-color: coral;
+div.blogPost:hover {
+    transition: 1s;
+    background-color: rgba(210, 127, 60); 
+    border-color: rgba(255, 127, 80);
     color: slategray;
 }
 .blogPost a:visited {
@@ -125,16 +127,6 @@ div.blogPost{
     font-weight: bold;
 }
 
-
-
-
-a#hw-corne{
-    background-size: 200px;
-    background-image: url(crkbd/hw-corne1.png);
-}
-#hw-corne p{
-    padding-bottom: 35px;
-}
 
 .mainContent{
     margin-left: 5px;

@@ -21,11 +21,11 @@
                 {%- for post in blog_posts -%}
                     <div class="blogPost">
                         <a href="{{ post.href }}">
+                            <img src="{{ post.image }}" class="thumbnail"></img>
                             <h2>{{ post.title }}</h2>
                             <p>{{ post.tags }}</p>
                             <time> {{ post.date }}</time>
                         </a>
-                        <img src="{{ post.image }}"></img>
                     </div>
                 {%- endfor -%}
                 </li>
