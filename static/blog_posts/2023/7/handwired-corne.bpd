@@ -15,20 +15,19 @@ _*content
 <h2 id="storytime">Storytime</h2>
 <h4>My first DIY Keyboard, the Corne</h4>
 <p>
-    About 2 years ago, I decided that, after finishing my <i>custom-wireless-superlight-fully_3d_printable-g303</i> mouse, 
-    I wanted to go back on my dream to build my own keyboard. <br />
+    For a bit of context, in 2021, after finishing my <i>custom-wireless-superlight-fully_3d_printable-g303</i> mouse, I decided to build my "dream keyboard". <br /> 
     Back in those times I was still using my good old Corsair Strafe RGB full-size keyboard, with the Windows key desoldered 
     (for a better gaming experience). <br />
     That keyboard accompanied for almost 5 years, it suffered many coffee spillages, and underwent 
     many unorthodox procedures, like the time I decided that my monthly cleaning was NOT enough. <br />
     Opting for a more in-depth cleaning method: Desoldering all the keys, cleaning it and putting it back together. (lmao) <br />
-    Let's go back in time a bit. <br />
+    There was one thing that really bothered me about it, and that was the size. <br />
+    Given that it was a full size gaming keyboard, it had a full numpad and a navigation cluster that had in my opinion "too much empty space". </br>
 </p>
-<h3>3 years ago</h3>
+<h3> Finding the perfect keyboard layout </h3>
 <p>
-    I didn't know much about keyboards, all I knew is that I wanted something different... <br />
-    That's how this journey started, looking around, trying to find how all the 'Standard' keyboard layouts were called, 
-    finally concluding on building a 75% keyboard. <br />
+    When I started, I didn't know much about keyboards, all I knew was that my Corsair Strafe was too large, and had too much un-used space <br />
+    That's how this journey started, looking around, trying to give names to all the 'Standard' keyboard layouts, and eventually concluding, that a 75% keyboard was the best option. <br />
     It was a no brainer, it had all the keys I needed for my video-gaming needs, and I wasn't planning on using it for anything else. <br />
 </p>
 <img src="/assets/images/kbs/keychron75.jpg" alt="Image of a 75% keyboard | Model = Keychron K3">
@@ -38,13 +37,12 @@ _*content
 <p>
     Precisely one hour after I arrived at my brilliant conclusion, was when I remembered some really important facts: 
     <ul>
-        <li>I was unemployed</li>
-        <li>Had no money</li>
-        <li>And no tools</li>
+        <li>I had no money</li>
+        <li>I had no tools</li>
     </ul>
 </p>
 <p style="margin-top: 0;">
-    The project had to be put on hold...
+    So, like many other projects, I had put it on hold...
 </p>           
 <h3>The title for this section is this mp3:
     <audio controls style="padding: 0; margin: 0;">
@@ -53,10 +51,9 @@ _*content
     </audio>
 </h3>
 <p>
-    Luckily for me, a year after that... (I know. It's a long story, but I'm getting there) <br />
-    I managed to land a job as a Manual Software Tester, but that's a tale for another blog-post. <br />
-    Not even minutes passed after I got the deposit with my first paycheck, and I instantly ran downstairs to steal my mom's credit card, and finance a 3d printer in 6 interest-free payments. (I paid her back)<br />
-    I wasn't making <i>a lot</i> of money, but at least I could buy my little plastic-laying machine that I wanted to have since I was 16, to build that aforementioned <i>custom-wireless-superlight-fully_3d_printable-g303</i> mouse (let's call it <i>the w303</i> from now on).
+    Luckily for me, a year after that, I started working as a Software Tester, but that's a tale for another blog-post. <br />
+    The first thing I did, not even 5 minutes after I got the deposit for my first paycheck, was instantly running downstairs to steal my mom's credit card, and finance a 3d printer in 6 interest-free payments. (I paid her back)<br />
+    I wasn't making <i>a lot</i> of money, but at least I could buy my little plastic-extuding cnc machine that I wanted to have since I was 16, to build that aforementioned <i>custom-wireless-superlight-fully_3d_printable-g303</i> mouse (I will refer to it as <i>w303</i> from now on).
 </p>
 <p>
     Build I did, took me a good 200 hours of blender time, but I managed to create the epitome of gaming mice, <a target=”_blank” href="https://github.com/maurogarciac/w303"><b>the w303</b></a>.
@@ -64,13 +61,15 @@ _*content
 <img src="/assets/images/w303/w303v1.jpg" alt="Image of the w303 | Wireless g303 project">
 <p class="img_subtitle">
     <i>"A logitech g303 shaped mouse that's fully wireless, solid as a rock, weighs only 50 grams and is 100% 3D printable with no required extra parts"</i>  <br />
-    - Me.  (I probably said that at some point) <br />
+    - Me.  (Yeah, I'm quoting myself, I did something cool) <br />
 </p>
 <h3>This was not the end...</h3>
 <p>
+    Like hard drugs (not that i've done any) the satisfaction of building something I've wanted for so much time, and using it every single day, hit me really hard. <br />
     I NEEDED to build something else. <br />
-    At this point in my professional career, doing Manual QA stopped being as cool as it initially was, and I wanted to code. <br />
-    Whilst using my corsair keyboard, and attempting to get faster at touch typing, I became familiar with other <i>types</i> of keyboards. <br />
+    At this point in my professional career, working in QA stopped being as cool as it initially was, and I wanted to code. <br />
+    Whilst using my corsair keyboard, and attempting to get faster at touch typing, I couldn't help but notice all the little inefficiencies that came with using QUERTY, in a row-staggered layout. <br />
+    So I started looking around, and became familiar with other <i>types</i> of keyboards. <br />
     First there were those Microsoft ergo keyboards, then the Moonlander, the Kinesis Advantage, the Dactyl, and many others. <br />
     But one keyboard I saw on a video, spiked my interest: <br />
     <br />
@@ -102,19 +101,18 @@ _*content
 </p>
 <h3>The choice was made...</h3>
 <p>
-    Yet again, problems arose. <br />
-    Tough I did have more disposable income than before, I wasn't sleeping on money. <br />
+    Yet again, monetary problems arose. <br />
+    Tough I did have more disposable income than before, I couldn't really afford to buy a cool super-custom japanese made crkbd. <br />
     I mean just a couple paragraphs before I said that I had to finance a 300 dollar printer, because my salary wasn't high enough to pay for it all at once. <br />
-    Buying a pcb and having it shipped internationally was out of the question. With shipping to argentina included, the end price came to almost 100 dollars. <br />
+    Buying a pcb and having it shipped internationally was out of the question. With shipping to argentina and taxes included, the end price came to almost 200 dollars. <br />
 </p>
-<h3>ONE HUNDRED BUX!</h3>
+<h3>TWO HUNDRED BUX!</h3>
 <p>
     No way that was gonna happen, specially since at the time, that was like 1/3 of my paycheck. <br />
-    It had to be handwired. <br />
-    Back in those days, there were barely any guides on the internet for making handwired keyboards, and I wasn't familiar enough with how it worked to make my own design. <br />
-    I was lost. <br />
-    Right then and there, I had an epiphany, a deity of some sort, blessed me with a good idea for once in my life. <br />
-    The Corne keyboard is an opensource project, and there was a way to get the wiring diagram I needed... <br />
+    It had to be done by hand. <br />
+    Back in those days, there were barely any guides on the internet for making handwired keyboards, and there was no schematic diagram to...<br />
+    WAIT, I had an epiphany, a deity of some sort, blessed me with a good idea for once in my life. <br />
+    The Corne keyboard is an opensource project, and in that project, was the wiring diagram I needed... <br />
 </p>
 <hr />
 <h2 id="build">Build</h2>
@@ -281,7 +279,20 @@ _*content
 </p>
 <p>
     So the plan is to design and build another split keyboard! <br />
-    What I have in mind, is an ortholinear keyboard with un-even split, that gives left hand access up to the M key (that would be two columns more than normal) <br />
+    Here is what I have in mind: <br />
+    An ortholinear keyboard with un-even split, that gives left hand access up to the M key (that would be two columns more than normal) <br />
+</p>
+<img src="/assets/images/kbs/wootec.png" alt="Drawn plans of a woteec keyboard"> <br />
+<p class="img_subtitle">
+    Now that's sketchy! <br />
+</p>
+<p>
     The main benefit of this design, is that the left side would be more compact than a 60%, which is what I was using before, and still have all the keys I need for my CSGO nade bindings. <br />
     It shall be called "woteec", short for "WOrst Typing Experience Ever Created", though I highly doubt it actually would be the worst, since alphabetic keyboards exist. <br />
 </p>
+<p>
+    That's pretty much all I got to say about keyboards for now, thought there's some other projects in the works. <br />
+    I think it's kind of funny how it all went full circle, started at a 75% and finished on one. But the corne has been a great companion for the last couple years, I learnt touch typing on it, and it got me to a modest typing speed of 90 WPM. <br />
+    I know it's not the highest, and there's people on querty going at 300 WPM, but typing is so confortable for me, 10/10 would recommend.
+</p>
+

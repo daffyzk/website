@@ -90,6 +90,7 @@ a.blogPost{
     border-style: solid;
     border-color: beige;
     background-color: var(--bp-bg-color);
+    color: var(--text-color);
     height: 150px;
     width: 150px;
     padding: 8px;
