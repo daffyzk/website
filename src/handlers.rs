@@ -213,6 +213,9 @@ fn get_all_files_in_dir(directory: PathBuf) -> Result<Vec<DirEntry>, Error> {
                     },
                 }
             }
+            // todo refactor
+            // reversing the entries solves the issue for now but I should refactor this later
+            entries.reverse();
             Ok(entries)
         },
         Err(e) => match e.kind() {
