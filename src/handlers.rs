@@ -87,8 +87,9 @@ fn handle_blog(year: Option<u16>, month: Option<u8>, post_name: Option<String>) 
 }
 
 fn blogpost_list_template(dir: PathBuf) -> Response {
-    // old code 
-    info!("dir {:?} exists", dir.clone());
+    let dir_binding = dir.clone();
+    let dir_str: &str = dir_binding.as_os_str().to_str().unwrap();
+    info!("dir {} exists", dir_str);
 
     let mut blog_posts: Vec<BlogPostPreview> = Vec::new();
 
@@ -111,9 +112,13 @@ fn blogpost_list_template(dir: PathBuf) -> Response {
         }
     }
     info!("blog post {:?}", blog_posts);
-    let body: BlogPostsListTemplate = BlogPostsListTemplate::from_params(blog_posts);
 
-    body.into_response()
+    if blog_posts.is_empty() {
+       not_found_error(dir_str.to_string(), dir_str.split("/").last().unwrap().to_string()) 
+    } else {
+        let body: BlogPostsListTemplate = BlogPostsListTemplate::from_params(blog_posts);
+        body.into_response()
+    }
 }
 
 
@@ -147,7 +152,7 @@ fn blogpost_template(dir: PathBuf) -> Response {
 
 
 fn not_found_error(file: String, value: String) -> Response {
-    info!("uhh {file} does not exist");
+    info!("Attempt to find blog_post file was unsucessful: {file}");
     (StatusCode::NOT_FOUND, format!("No blog posts found in: {}", value)).into_response()
 }
 
