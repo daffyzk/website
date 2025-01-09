@@ -4,10 +4,9 @@ WORKDIR /work
 
 COPY . .
 
-# need to build it with 'bins' to have all the 
-RUN cargo build --bins --release
+RUN cargo build --release
 
-CMD ["/target/release/daffy-website"]
+CMD ["target/release/daffy-website"]
 
 # FROM scratch
 # COPY --from=gaming /work/target/release /
