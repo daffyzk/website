@@ -4,12 +4,11 @@ WORKDIR /work
 
 COPY . .
 
-RUN cargo build --release
+RUN rustup target add x86_64-unknown-linux-musl && \
+    cargo build --release --target x86_64-unknown-linux-musl
 
-CMD ["target/release/daffy-website"]
 
-# FROM scratch
-# COPY --from=gaming /work/target/release /
+FROM scratch
+COPY --from=gaming /work/target/x86_64-unknown-linux-musl/release/daffy-website /
 
-# ENTRYPOINT ["/daffy-website"]
-# # CMD ["ls"]
+ENTRYPOINT ["/daffy-website"]
