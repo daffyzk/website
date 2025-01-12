@@ -6,6 +6,8 @@ use tower_http::services::ServeFile;
 use crate::handlers::{handle_blog_post, handle_monthly_blog_posts, handle_yearly_blog_posts, handle_blog_index, handle_404};
 
 
+//const ASSET_DIR: &str = "static/assets/";
+
 #[derive(RustEmbed, Clone)]
 #[folder = "static/assets/"]
 struct Assets;

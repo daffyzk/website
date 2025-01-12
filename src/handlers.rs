@@ -6,6 +6,8 @@ use axum::{extract::Path, http::StatusCode, response::{IntoResponse, Response}};
 use tracing::{info, error};
 
 
+const BLOG_DIR: &str = "static/blog_posts/";
+
 pub async fn handle_404() -> Response {
     (StatusCode::NOT_FOUND, "Nothing to see here!").into_response()
 }
@@ -36,7 +38,7 @@ pub async fn handle_yearly_blog_posts(Path(year): Path<u16>) -> Response {
 
 fn handle_blog(year: Option<u16>, month: Option<u8>, post_name: Option<String>) -> Response {
    
-    let base_dir: PathBuf = PathBuf::from("static/blog_posts/");
+    let base_dir: PathBuf = PathBuf::from(BLOG_DIR);
 
     match year {
         Some(year) => {
