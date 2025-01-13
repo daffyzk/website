@@ -1,18 +1,3 @@
-footer{
-    position: fixed;
-    padding-left: 10px;
-    left: 5px;
-    bottom: 0;
-    width: auto;
-    background-color:rgba(255, 245, 210, 0.61);
-    padding-left: 10px;
-}
-footer div p{
-    margin: 0;
-    padding-top: 6px;
-    font-size: smaller;
-    font-style: italic;
-}
 /*---main---*/
 html{
     background-color: floralwhite;
@@ -25,24 +10,52 @@ header div{
     align-items: center;
     padding-bottom: 10px;
 }
+
+header div {
+    h1, h3{
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: color 0.5s ease;
+        background-image: linear-gradient(to right, #000000, #000000);
+    transition: 1s;
+    }
+
+}
+
+header div:hover {
+    h1 {
+        background-image: linear-gradient(to right, #00ffff, #00ff00);
+    }
+    h3 { 
+        background-image: linear-gradient(to right, #00ff00, #00ffff);
+    }
+    transition: 1s;
+}
+
 header div h1{
     margin-bottom: 0%;
     padding-bottom: 0%;
     font-weight: bolder;
 }
+
 header div h3{
+
     display: flex;
     margin: 0%;
-    padding-top: 0%;
+    padding: 0 10px 0 0;
     font-weight: bold;
     font-style: italic;
     font-family: monospace;
 }
+
+
 li form{
     text-align: center;
     border-width: 0.1em;
 }
-button{
+button, .button{
     margin-top: 8px;
     padding: 6px;
     font-size: 20px;
@@ -51,13 +64,14 @@ button{
     border-color: azure;
     border-style: none;
     color: darkslategray;
+    display: inline-table;
 }
-button:hover{
+button:hover, .button:hover{
     background-color: aquamarine;
     color: cornflowerblue;
 }
 
-.mainContent{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,21 +79,71 @@ button:hover{
     padding-bottom: 50px;
     margin: 0 30% 0 30%;
 }
-.mainContent ul{
+main ul{
     padding-top: 0;
     list-style: none;
     padding-left: 20%;
     padding-right: 20%;
 }
 
+/* animation land */
+
+.sl {
+    position: absolute;
+    width: 600px;
+    height: 100px;
+    background: rgba(255, 0, 0, 0.5);
+    right: -550px;
+    top: 50px;
+    text-align: left;
+    transition: none;
+    display: none;
+}
+
+.sl::after {
+    content: "";
+    text-wrap: auto;
+    position: absolute;
+    animation: none;
+}
+
+#toggle:checked ~ .sl {
+    display: unset;
+    animation: choochoo 4s linear forwards;
+}
+
+#toggle:checked ~ .sl::after {
+    animation: changeText 4s steps(1, end);
+}
+
+@keyframes choochoo {
+    0% {
+        
+        right: -100px;
+        /* transform: rotate(0deg);
+         * */
+    }
+    100% {
+        right: 100vw;
+        /* transform: rotate(360deg); */
+    }
+}
+
+@keyframes changeText {
+    0% { content: "choo"; }
+    50% { content: "choo choo"; }
+    90% { content: "choo choo choo"; }
+}
+
+
 @media only screen and (max-width:1250px) {
 
-    .mainContent{
+    main{
         display: flex;
         align-items: center;
         margin: 0 5% 0 5%;
     }
-    .mainContent ul{
+    main ul{
         list-style: none;
         padding: 0;
     }
