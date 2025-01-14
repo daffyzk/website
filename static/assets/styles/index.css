@@ -55,6 +55,7 @@ li form{
     text-align: center;
     border-width: 0.1em;
 }
+
 button, .button{
     margin-top: 8px;
     padding: 6px;
@@ -66,6 +67,7 @@ button, .button{
     color: darkslategray;
     display: inline-table;
 }
+
 button:hover, .button:hover{
     background-color: aquamarine;
     color: cornflowerblue;
@@ -86,55 +88,154 @@ main ul{
     padding-right: 20%;
 }
 
+body {
+    overflow: hidden;
+}
+
 /* animation land */
 
-.sl {
+#sl {
     position: absolute;
     width: 600px;
-    height: 100px;
-    background: rgba(255, 0, 0, 0.5);
-    right: -550px;
+    height: 200px;
+    right: -600px;
     top: 50px;
     text-align: left;
     transition: none;
     display: none;
+    box-sizing: border-box;
 }
 
-.sl::after {
-    content: "";
-    text-wrap: auto;
+#animation {
+    display: flex;
+    flex-direction: column;
+} 
+
+.button:after {
+    content: "Steam Locomotive";
+}
+
+.cart {
+    height: 100%;
+    
+}
+
+#train {
+    display: flex;
+    flex-direction: row;
+}
+
+#locomotive {
+    height: 100%;
+}
+
+#wframe2, #wframe3 , #wframe4, #wframe5, #wframe6 {
+    display: none;
+}
+
+#sl:after {
     position: absolute;
     animation: none;
 }
 
-#toggle:checked ~ .sl {
+#toggle:checked ~ #sl {
     display: unset;
-    animation: choochoo 4s linear forwards;
+    animation: chooChoo 4s linear forwards;
 }
 
-#toggle:checked ~ .sl::after {
-    animation: changeText 4s steps(1, end);
+#toggle:checked ~ #wheels:after {
+    animation: wheelsTurning 1s infinite;
 }
 
-@keyframes choochoo {
-    0% {
-        
-        right: -100px;
-        /* transform: rotate(0deg);
-         * */
+#toggle:checked ~ .button:after {
+    content: "Restart";
+}
+
+@keyframes chooChoo {
+    0% { 
+        right: -550px;
     }
     100% {
-        right: 100vw;
-        /* transform: rotate(360deg); */
+        right: 110vw;
     }
 }
 
-@keyframes changeText {
-    0% { content: "choo"; }
-    50% { content: "choo choo"; }
-    90% { content: "choo choo choo"; }
+@keyframes wheelsTurning {
+    0%, 16.67% { 
+        #wframe1 {
+            display: unset;
+        } 
+    }
+    16.68%, 33.33% {
+        #wframe1 {
+            display: none;
+        }
+        #wframe2 {
+            display: unset;
+        }
+    }
+    33.34%, 50% {
+        #wframe2 {
+            display: none;
+        }
+        #wframe3 {
+            display: unset;
+        } 
+    }
+    50.1%, 66.67% {
+        #wframe3 {
+            display: none;
+        }
+        #wframe4 {
+            display: unset;
+        }
+    }
+    66.68%, 83.33% {
+        #wframe4 {
+            display: none;
+        }
+        #wframe5 {
+            display: unset;
+        }
+    }
+    83.34%, 100% {
+        #wframe5 {
+            display: none;
+        }
+        #wframe6 {
+            display: unset;
+        }
+    }
 }
 
+#smoke {
+    position: relative;
+    height: 110px;
+}
+
+#sframe1, #sframe2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+#sframe1 {
+    animation: smokeFrames 1s infinite ;
+}
+
+#sframe2 {
+    animation: smokeFrames 1s infinite 0.5s;
+}
+
+@keyframes smokeFrames {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
 
 @media only screen and (max-width:1250px) {
 
