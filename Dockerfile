@@ -15,5 +15,6 @@ FROM scratch
 #COPY --from=gaming /work/target/x86_64-unknown-linux-musl/release/daffy-website /
 
 COPY --from=gaming /work/target/aarch64-unknown-linux-musl/release/daffy-website /
+COPY --from=gaming /work/static /static
 
 ENTRYPOINT ["/daffy-website"]
