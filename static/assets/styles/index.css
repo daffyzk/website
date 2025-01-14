@@ -116,8 +116,7 @@ body {
 }
 
 .cart {
-    height: 100%;
-    
+    height: 100%;    
 }
 
 #train {
@@ -129,26 +128,18 @@ body {
     height: 100%;
 }
 
-#wframe2, #wframe3 , #wframe4, #wframe5, #wframe6 {
-    display: none;
-}
-
 #sl:after {
     position: absolute;
     animation: none;
 }
 
+#toggle:checked ~ .button:after {
+    content: "Restart";
+}
+
 #toggle:checked ~ #sl {
     display: unset;
     animation: chooChoo 4s linear forwards;
-}
-
-#toggle:checked ~ #wheels:after {
-    animation: wheelsTurning 1s infinite;
-}
-
-#toggle:checked ~ .button:after {
-    content: "Restart";
 }
 
 @keyframes chooChoo {
@@ -160,53 +151,48 @@ body {
     }
 }
 
+
+#wheels {
+    position: relative;
+    top: -30px;
+}
+
+#wframe1, #wframe2, #wframe3 , #wframe4, #wframe5, #wframe6 {
+    position: absolute;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+}
+
+#wframe1 {
+    animation: wheelsTurning 1s infinite;
+}
+#wframe2 {
+    animation: wheelsTurning 1s infinite 0.16s;
+}
+#wframe3 {
+    animation: wheelsTurning 1s infinite 0.33s;
+}
+#wframe4 {
+    animation: wheelsTurning 1s infinite 0.5s;
+}
+#wframe5 {
+    animation: wheelsTurning 1s infinite 0.66s;
+}
+#wframe6 {
+    animation: wheelsTurning 1s infinite 0.83s;
+}
+
 @keyframes wheelsTurning {
-    0%, 16.67% { 
-        #wframe1 {
-            display: unset;
-        } 
+    0%, 16.67% {
+        opacity: 1;
     }
-    16.68%, 33.33% {
-        #wframe1 {
-            display: none;
-        }
-        #wframe2 {
-            display: unset;
-        }
-    }
-    33.34%, 50% {
-        #wframe2 {
-            display: none;
-        }
-        #wframe3 {
-            display: unset;
-        } 
-    }
-    50.1%, 66.67% {
-        #wframe3 {
-            display: none;
-        }
-        #wframe4 {
-            display: unset;
-        }
-    }
-    66.68%, 83.33% {
-        #wframe4 {
-            display: none;
-        }
-        #wframe5 {
-            display: unset;
-        }
-    }
-    83.34%, 100% {
-        #wframe5 {
-            display: none;
-        }
-        #wframe6 {
-            display: unset;
-        }
+    16.68%, 100% { 
+        opacity: 0;
     }
 }
+
 
 #smoke {
     position: relative;
