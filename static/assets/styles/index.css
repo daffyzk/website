@@ -154,7 +154,7 @@ body {
 
 #wheels {
     position: relative;
-    top: -30px;
+    top: -26px;
 }
 
 #wframe1, #wframe2, #wframe3 , #wframe4, #wframe5, #wframe6 {
@@ -169,7 +169,7 @@ body {
     animation: wheelsTurning 1s infinite;
 }
 #wframe2 {
-    animation: wheelsTurning 1s infinite 0.16s;
+    animation: wheelsTurning 1s infinite 0.17s;
 }
 #wframe3 {
     animation: wheelsTurning 1s infinite 0.33s;
@@ -178,7 +178,7 @@ body {
     animation: wheelsTurning 1s infinite 0.5s;
 }
 #wframe5 {
-    animation: wheelsTurning 1s infinite 0.66s;
+    animation: wheelsTurning 1s infinite 0.67s;
 }
 #wframe6 {
     animation: wheelsTurning 1s infinite 0.83s;
