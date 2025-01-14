@@ -8,8 +8,8 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 12443:12443
-      - 12444:12444
+      - "12443:12443"
+      - "12444:12444"
     restart: unless-stopped
 
 networks:
