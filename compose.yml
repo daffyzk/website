@@ -1,5 +1,8 @@
 services:
   daffy-website:
+    networks:
+      - proxynet
+      - monitoring
     container_name: daffy_website
     build:
       context: .
@@ -8,3 +11,9 @@ services:
       - 12443:12443
       - 12444:12444
     restart: unless-stopped
+
+networks:
+  proxynet:
+    external: true
+  monitoring:
+    external: true
