@@ -100,7 +100,7 @@ body {
 
 #sl {
     position: absolute;
-    width: 600px;
+    width: 700px;
     height: 200px;
     right: -600px;
     top: 50px;
@@ -137,8 +137,8 @@ body {
     flex-direction: row;
 }
 
-#locomotive {
-    height: 100%;
+#cab {
+    height: 151;
 }
 
 #sl:after {
@@ -149,6 +149,8 @@ body {
 #toggle:checked ~ .button:after {
     content: "Again!!";
 }
+
+/* actual right to left movement animation */
 
 #toggle:checked ~ #sl {
     display: unset;
@@ -164,10 +166,12 @@ body {
     }
 }
 
+/* animation for the wheels */
 
 #wheels {
     position: relative;
     top: -26px;
+    height: 70px;
 }
 
 #wframe1, #wframe2, #wframe3 , #wframe4, #wframe5, #wframe6 {
@@ -206,10 +210,11 @@ body {
     }
 }
 
+/* smoke animation */
 
 #smoke {
     position: relative;
-    height: 110px;
+    height: 120px;
 }
 
 #sframe1, #sframe2 {
@@ -234,6 +239,40 @@ body {
     50%, 100% {
         opacity: 0;
     }
+}
+
+/* pipe to lolcat -a (rainbow animation) */
+
+.lolcat {
+    position: relative;
+    color: #000;
+    background: #fff;
+    mix-blend-mode: multiply;
+    overflow: hidden;
+}
+.lolcat::before{
+    content: "";
+    position: absolute;
+    top:0;right:0;bottom:0;left:-100%;
+    background: white repeating-linear-gradient(90deg, #14ffe9 0%, #ffc800 16.66666%, #ff00e0 33.33333%, #14ffe9 50.0%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: moveColors 1s linear infinite;
+}
+
+@keyframes moveColors{
+    0%{transform: translateX(0);}
+    100%{transform: translateX(50%);}
+}
+
+@supports not (mix-blend-mode: multiply) {
+    .lolcat{
+        -webkit-text-fill-color: transparent;
+        background-clip: text !important;
+        background: white repeating-linear-gradient(90deg, #14ffe9, #ffc800, #ff00e0, #14ffe9);
+        text-shadow: none;
+	}
+    .lolcat::before{ content: none; }
 }
 
 @media only screen and (max-width:1250px) {
