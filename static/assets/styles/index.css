@@ -86,6 +86,10 @@ main ul{
     list-style: none;
     padding-left: 20%;
     padding-right: 20%;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
@@ -109,14 +113,23 @@ body {
 #animation {
     display: flex;
     flex-direction: column;
-} 
+}
+
+.button {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .button:after {
     content: "Steam Locomotive";
 }
 
-.cart {
-    height: 100%;    
+#cart {
+    height: 100%;
+    position: relative;
+    left: -16px;
 }
 
 #train {
@@ -134,12 +147,12 @@ body {
 }
 
 #toggle:checked ~ .button:after {
-    content: "Restart";
+    content: "Again!!";
 }
 
 #toggle:checked ~ #sl {
     display: unset;
-    animation: chooChoo 4s linear forwards;
+    animation: chooChoo 5s linear forwards;
 }
 
 @keyframes chooChoo {
@@ -147,7 +160,7 @@ body {
         right: -550px;
     }
     100% {
-        right: 110vw;
+        right: 130vw;
     }
 }
 
@@ -162,26 +175,26 @@ body {
     opacity: 0;
     height: 100%;
     width: 100%;
-    transition: 0.5s;
+    transition: 0s;
 }
 
 #wframe1 {
     animation: wheelsTurning 1s infinite;
 }
 #wframe2 {
-    animation: wheelsTurning 1s infinite 0.17s;
+    animation: wheelsTurning 1s infinite 0.16s;
 }
 #wframe3 {
-    animation: wheelsTurning 1s infinite 0.33s;
+    animation: wheelsTurning 1s infinite 0.32s;
 }
 #wframe4 {
     animation: wheelsTurning 1s infinite 0.5s;
 }
 #wframe5 {
-    animation: wheelsTurning 1s infinite 0.67s;
+    animation: wheelsTurning 1s infinite 0.66s;
 }
 #wframe6 {
-    animation: wheelsTurning 1s infinite 0.83s;
+    animation: wheelsTurning 1s infinite 0.82s;
 }
 
 @keyframes wheelsTurning {
