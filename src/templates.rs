@@ -70,7 +70,9 @@ impl BlogPostTemplate {
             url: "/blog".to_string()
         }
     }
-
+    pub fn render() -> Result() {
+        Self::render()
+    }
     pub fn from_file(href: String, file_content: &str) -> Result<Self, Box<dyn Error>> {
 
         let mut title: String = String::new();

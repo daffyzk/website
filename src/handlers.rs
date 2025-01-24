@@ -1,6 +1,6 @@
 use crate::templates::{BlogPostTemplate, BlogPostPreview, BlogPostsListTemplate};
 
-use std::{fs::{DirEntry, File}, io::{Error, ErrorKind, Read}, path::PathBuf};
+use std::{fs::{DirEntry, File, read_to_string}, io::{Error, ErrorKind, Read}, path::PathBuf};
 
 use axum::{extract::Path, http::StatusCode, response::{IntoResponse, Response}};
 use tracing::{info, error};
@@ -57,14 +57,8 @@ fn handle_blog(year: Option<u16>, month: Option<u8>, post_name: Option<String>) 
                         if month_dir.exists() {  // if there is some month & month exists
                             match post_name {
                                 Some(post) => {
-                                    let post_file = post.clone() + ".bpd";
-                                    let post_dir = month_dir.join(post_file);
-                                    if post_dir.exists() {
-                                        blogpost_template(post_dir)  // if post exists, return blogpost
-                                    } else {
-                                        let post_str: String = post_dir.into_os_string().into_string().unwrap();
-                                        not_found_error(post_str, post)
-                                    }
+                                    // maybe update this to look for html only
+                                    blogpost_template(month_dir, post.clone())  // if post exists, return blogpost
                                 }
                                 None => {
                                     blogpost_list_template(month_dir) // list of this month's blogposts
@@ -124,31 +118,58 @@ fn blogpost_list_template(dir: PathBuf) -> Response {
 }
 
 
-fn blogpost_template(dir: PathBuf) -> Response {
-    // when this function is called, it is assumed that the file it's calling exists (based on the
-    // caller)
-    let dir_str: String = dir.clone().into_os_string().into_string().unwrap();
-    info!("dir {} exists", dir_str);
+fn blogpost_template(month_dir: PathBuf, file_str: String) -> Response {
+    // if the file exists, create html based on template and return response to html path
+    // else, return not found err response
+    // these html files should not be saved in the repo, and they can be deleted later if
+    // a blogpost needs to be updated
+    
+    let html_dir: PathBuf = month_dir.join(file_str.clone() + ".html");
+    let bpd_dir: PathBuf = month_dir.join(file_str.clone() + ".bpd");
 
-    let file = File::open(dir);
+    if html_dir.exists() {
+        
+        match read_to_string(html_dir) {
+        Ok(content) => ([(axum::http::header::CONTENT_TYPE, "text/html")], content).into_response(),
+        Err(_) => (
+            axum::http::StatusCode::INTERNAL_SERVER_ERROR,
+            "Failed to read file",
+        )
+            .into_response(),
+    }
 
-    match file {
-        Ok(mut file) => {        
-                // read the file into a string and send it
+        // return html file rendered as a response
+    } else if !html_dir.exists() && bpd_dir.exists() {
+        // do the whole conversion schpiel
+        let dir_str: String = html_dir.clone().into_os_string().into_string().unwrap();
+        info!("dir {} exists", dir_str);
+        let file = File::open(html_dir);
+        match file {
+            Ok(mut file) => {        
+                // read the file into a string and create an html
                 let mut file_buf= String::new();
                 match file.read_to_string(&mut file_buf) {
                     Ok(_usize) => {
                         info!("blog post {:?} was found and read", dir_str);         // we get the full blog post
-                        return BlogPostTemplate::from_file(
+                        let template = BlogPostTemplate::from_file(
                             href_formatter(dir_str),
-                                &file_buf).unwrap().into_response();
-                    }
+                                &file_buf).unwrap();
+
+                        let render = template.render();
+                        std::fs::write(html_dir, render).unwrap();
+                        return template.into_response();
+                    },
                     Err(_) => {return internal_server_error( format!("Could not read file {dir_str}"));},
-                }
-        },
-        Err(_) => {
-            return internal_server_error(format!("Could not open file {dir_str}"));
-        }
+                    }
+            },
+            Err(_) => {
+                return internal_server_error(format!("Could not open file {dir_str}"));
+            }
+        }        
+    } else {
+        // check for .bpd file and create html
+        let post_str: String = post_dir.into_os_string().into_string().unwrap();
+        not_found_error(post_str, post)
     }
 }
 
