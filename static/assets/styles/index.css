@@ -11,27 +11,34 @@ header div{
     padding-bottom: 10px;
 }
 
-header div {
+header {
+    
     h1, h3{
         color: transparent;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        transition: color 0.5s ease;
-        background-image: linear-gradient(to right, #000000, #000000);
-    transition: 1s;
+        background-size: 200% 100%;
+        transition: all 0.3s ease-out;
     }
+    h1 {
+        background-position: left bottom;
+        background-image: linear-gradient(to left, #00ff00 15%, #00ffff 50%, #000000 50% 100%);
 
+    }
+    h3 { 
+        background-position: right bottom;
+        background-image: linear-gradient(to right, #00ff00 15%, #00ffff 50%, #000000 50% 100%);
+    }
 }
 
 header div:hover {
     h1 {
-        background-image: linear-gradient(to right, #00ffff, #00ff00);
+        background-position: right bottom;
     }
     h3 { 
-        background-image: linear-gradient(to right, #00ff00, #00ffff);
+        background-position: left bottom;
     }
-    transition: 1s;
 }
 
 header div h1{
